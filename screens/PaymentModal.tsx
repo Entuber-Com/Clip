@@ -44,7 +44,11 @@ const PaymentModal = (props: any)  => {
                 <Col style={{justifyContent:'center'}}>
                 <RNPickerSelect
                       onValueChange={(value) => console.log(value)}
-                      placeholder='Payment Mode'
+                      placeholder={{
+                        label:'Payment Mode',
+                        value: null,
+                        color: '#ccc'
+                      }}
                       items={[
                           { label: 'Apple Pay', value: 'Apple Pay', key: 'Apple Pay' },
                           { label: 'Google Pay', value: 'Google Pay', key: 'Google Pay' },
@@ -65,6 +69,7 @@ const PaymentModal = (props: any)  => {
             </TouchableHighlight>
             <TouchableHighlight
               style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+              underlayColor='#ed7738'
               onPress={() => {
                 props.setModalVisible(false);
               }}

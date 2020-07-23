@@ -14,6 +14,7 @@ import MeterReading from '../screens/MeterReading';
 import Home from '../screens/Home';
 import OutageMap from '../screens/OutageMap';
 import { View } from 'react-native';
+import MeterReadingCamera from '../screens/MeterReadingCamera';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -23,7 +24,7 @@ export default function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="HomeScreenTab"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}
+      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint, keyboardHidesTabBar: true }}
     >
       <BottomTab.Screen
         name="HomeScreenTab"
@@ -130,7 +131,18 @@ function BillNavigator() {
       <BillStack.Screen
         name="MeterReading"
         component={MeterReading}
-        options={{ headerTitle: 'Tab Two Title' }}
+        options={{ 
+          headerTitle: 'Meter Reading',
+          headerTitleAlign: 'center',
+          headerStyle:{
+              backgroundColor: Colors.PRIMARY
+          },
+          headerTintColor: '#fff'
+        }}
+      />
+      <BillStack.Screen
+        name="MeterReadingCamera"
+        component={MeterReadingCamera}
       />
       <BillStack.Screen
         name="PaymentHistory"

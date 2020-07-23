@@ -18,6 +18,7 @@ export type HomeScreenParams = {
 export type BillScreenParams = {
   BillScreen: undefined;
   MeterReading: undefined;
+  MeterReadingCamera: undefined;
   PaymentHistory: undefined;
 };
 
