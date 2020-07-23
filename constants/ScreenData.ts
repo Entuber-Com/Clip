@@ -8,6 +8,11 @@ export const BillScreenData = [
       id: "2",
       title: "Payment History",
       icon: require('../assets/images/Icons/Payment_History.png')
+    },
+    {
+      id: "3",
+      title: "Bill Breakdown",
+      icon: require('../assets/images/Icons/Payment_History.png')
     }
 ]; 
 
@@ -51,5 +56,65 @@ export const MoreOptionsScreenData = [
       id: "4",
       title: "Push Notifications",
       icon: require('../assets/images/Icons/Push_Notifications.png')
+    },
+    {
+      id: "5",
+      title: "Enroll In Programs",
+      icon: require('../assets/images/Icons/Enroll_In_Programs.png'),
+      description: 'Paperless, Equal Payment Plan & Auto Pay'
+    },
+    {
+      id: "6",
+      title: "Manage Payment Methods",
+      icon: require('../assets/images/Icons/Manage_Payment_Methods.png'),
+    },
+    {
+      id: "7",
+      title: "Contact Customer Service",
+      icon: require('../assets/images/Icons/Contact_Customer_Service.png'),
+      description: 'Password, Security Questions & Biometrics'
+    },
+    {
+      id: "8",
+      title: "Submit App Feedback",
+      icon: require('../assets/images/Icons/Submit_App_Feedback.png')
     }
+]
+
+export const enrollScreenData = [
+  {
+    id: "1",
+    title: "Paperless Billing",
+    icon: require('../assets/images/Icons/Paperless_Billing.png'),
+    descriptionRight: 'Status: Enrolled'
+  },
+  {
+    id: "2",
+    title: "Equal Payment Plan",
+    icon: require('../assets/images/Icons/Equal_Payment_Plan.png'),
+    descriptionRight: 'Status: Not Enrolled'
+  },
+  {
+    id: "3",
+    title: "Auto Pay",
+    icon: require('../assets/images/Icons/Auto_Pay.png'),
+    descriptionRight: 'Status: Not Enrolled'
+  },
+]
+export const safetyInfoScreenData = [
+  {
+    id: "1",
+    title: "Call Before You Dig",
+    icon: require('../assets/images/Icons/Call_Before_You_Dig.png')
+  },
+  {
+    id: "2",
+    title: "Natural Gas Safety",
+    icon: require('../assets/images/Icons/Natural_Gas_Safety.png'),
+  },
+  {
+    id: "3",
+    title: "Carbon Monoxide Safety",
+    icon: require('../assets/images/Icons/Carbon_Monoxide_Safety.png'),
+  },
 ]

@@ -15,6 +15,10 @@ import Home from '../screens/Home';
 import OutageMap from '../screens/OutageMap';
 import { View } from 'react-native';
 import MeterReadingCamera from '../screens/MeterReadingCamera';
+import BillAnalytics from '../screens/BillAnalytics';
+import EnrollPrograms from '../screens/EnrollPrograms';
+import SafetyInformation from '../screens/SafetyInformation';
+import MyAlerts from '../screens/MyAlerts';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -156,6 +160,18 @@ function BillNavigator() {
           headerTintColor: '#fff'
         }}
       />
+      <BillStack.Screen
+        name="BillAnalytics"
+        component={BillAnalytics}
+        options={{ 
+          headerTitle: 'Payment History',
+          headerTitleAlign: 'center',
+          headerStyle:{
+              backgroundColor: Colors.PRIMARY
+          },
+          headerTintColor: '#fff'
+        }}
+      />
     </BillStack.Navigator>
   );
 }
@@ -200,7 +216,50 @@ function MoreOptionsNavigator() {
       <MoreOptionsStack.Screen
         name="MoreOptionsScreen"
         component={MoreOptions}
-        options={{ headerTitle: 'Tab Two Title' }}
+        options={{ 
+          headerTitle: 'More',
+          headerTitleAlign: 'center',
+          headerStyle:{
+              backgroundColor: Colors.PRIMARY
+          },
+          headerTintColor: '#fff'
+        }}
+      />
+      <MoreOptionsStack.Screen
+        name="EnrollPrograms"
+        component={EnrollPrograms}
+        options={{ 
+          headerTitle: 'Enroll',
+          headerTitleAlign: 'center',
+          headerStyle:{
+              backgroundColor: Colors.PRIMARY
+          },
+          headerTintColor: '#fff'
+        }}
+      />
+      <MoreOptionsStack.Screen
+        name="PushNotifications"
+        component={MyAlerts}
+        options={{ 
+          headerTitle: 'My Alerts',
+          headerTitleAlign: 'center',
+          headerStyle:{
+              backgroundColor: Colors.PRIMARY
+          },
+          headerTintColor: '#fff'
+        }}
+      />
+      <MoreOptionsStack.Screen
+        name="SafetyInfo"
+        component={SafetyInformation}
+        options={{ 
+          headerTitle: 'Safety Information',
+          headerTitleAlign: 'center',
+          headerStyle:{
+              backgroundColor: Colors.PRIMARY
+          },
+          headerTintColor: '#fff'
+        }}
       />
     </MoreOptionsStack.Navigator>
   );

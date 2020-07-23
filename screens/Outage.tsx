@@ -14,6 +14,7 @@ export default function Outage(props: any) {
     if (item.title === 'View Outage Map') {
       props.navigation.navigate('OutageMap');
     }
+    return;
   }
 
   return (

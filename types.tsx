@@ -20,6 +20,7 @@ export type BillScreenParams = {
   MeterReading: undefined;
   MeterReadingCamera: undefined;
   PaymentHistory: undefined;
+  BillAnalytics: undefined;
 };
 
 export type OutageScreenParams = {
@@ -29,4 +30,7 @@ export type OutageScreenParams = {
 
 export type MoreOptionScreenParams = {
   MoreOptionsScreen: undefined;
+  EnrollPrograms: undefined;
+  SafetyInfo: undefined;
+  PushNotifications: undefined;
 };

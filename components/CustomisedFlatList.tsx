@@ -44,6 +44,12 @@ const Item = ({ item, itemPressed }: any) => (
                     <Text note>{item.description}</Text>
                 </View>)
             }
+            {
+                item.descriptionRight &&
+                (<View style={{alignItems: 'flex-end', paddingBottom: 15,paddingRight:10}}>
+                    <Text note>{item.descriptionRight}</Text>
+                </View>)
+            }
         </TouchableOpacity>
     </Card>
 );

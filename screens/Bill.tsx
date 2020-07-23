@@ -17,6 +17,10 @@ export default function Bill(props: any) {
         if (item.title === 'Submit Meter Reading') {
             props.navigation.navigate('MeterReading')
         }
+        if (item.title === 'Bill Breakdown') {
+            props.navigation.navigate('BillAnalytics')
+        }
+        return;
     }
     
     return (
