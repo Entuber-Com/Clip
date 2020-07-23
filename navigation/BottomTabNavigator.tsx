@@ -1,13 +1,19 @@
-import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import { BottomTabParamList, HomeScreenParams, BillScreenParams, OutageScreenParams, MoreOptionScreenParams } from '../types';
+import { Icon, Thumbnail } from 'native-base';
+import Outage from '../screens/Outage';
+import MoreOptions from '../screens/MoreOptions';
+import Bill from '../screens/Bill';
+import PaymentHistory from '../screens/PaymentHistory';
+import MeterReading from '../screens/MeterReading';
+import Home from '../screens/Home';
+import OutageMap from '../screens/OutageMap';
+import { View } from 'react-native';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -16,20 +22,43 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
+      initialRouteName="HomeScreenTab"
+      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}
+    >
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneNavigator}
+        name="HomeScreenTab"
+        component={HomeNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarLabel: 'Home',
+          unmountOnBlur:true,
+          tabBarIcon: ({ color, focused }) => <TabBarIcon type='FontAwesome' name="home" color={color} focused={focused}/>,
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoNavigator}
+        name="BillScreenTab"
+        component={BillNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarLabel: 'Bill',
+          unmountOnBlur:true,
+          tabBarIcon: ({ color, focused }) => <Icon style={{ fontSize: 30, marginBottom: -3 }} ios='ios-stats' android='md-stats' color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="OutageScreenTab"
+        component={OutageNavigator}
+        options={{
+          tabBarLabel: 'Outage',
+          unmountOnBlur:true,
+          tabBarIcon: ({ color, focused }) => <TabBarIcon type='MaterialCommunityIcons' focused={focused} name="flash" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="MoreOptionsScreenTab"
+        component={MoreOptionsNavigator}
+        options={{
+          tabBarLabel: 'More',
+          unmountOnBlur:true,
+          tabBarIcon: ({ color, focused }) => <TabBarIcon type='Feather' focused={focused} name="more-horizontal" color={color} />,
         }}
       />
     </BottomTab.Navigator>
@@ -38,36 +67,130 @@ export default function BottomTabNavigator() {
 
 // You can explore the built-in icon families and icons on the web at:
 // https://icons.expo.fyi/
-function TabBarIcon(props: { name: string; color: string }) {
-  return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
+function TabBarIcon(
+  props: { name: string; color: string; focused?: boolean, type?: "AntDesign" | "Entypo" | "EvilIcons" | "Feather" | "FontAwesome" | "FontAwesome5" | "Foundation" | "Ionicons" | "MaterialCommunityIcons" | "MaterialIcons" | "Octicons" | "SimpleLineIcons" | "Zocial"}
+) {
+  return (
+    <View style={{borderTopColor: props.focused ? '#ed7738' : 'none', borderTopWidth: props.focused ? 5 : 0}}>
+      <Icon style={{ fontSize: 30, marginBottom: -3 }} {...props} />
+    </View>);
 }
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
+const HomeStack = createStackNavigator<HomeScreenParams>();
 
-function TabOneNavigator() {
+function HomeNavigator() {
   return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
-        name="TabOneScreen"
-        component={TabOneScreen}
-        options={{ headerTitle: 'Tab One Title' }}
+    <HomeStack.Navigator>
+      <HomeStack.Screen
+        name="HomeScreen"
+        component={Home}
+        options={{ 
+          headerTitle: () => (
+            <View style={{
+                width: 50,
+                justifyContent:'center',
+                alignItems:'center',
+                height: 50,
+                borderRadius: 5,
+                backgroundColor: '#fff'}}
+            >
+              <Thumbnail source={require('../assets/images/logo.png')} style={{height: 50, width: 50}}/>
+            </View>
+          ),
+          headerTitleAlign: 'center',
+          headerStyle:{
+              backgroundColor: Colors.PRIMARY
+          },
+          headerTintColor: '#fff'
+        }}
       />
-    </TabOneStack.Navigator>
+    </HomeStack.Navigator>
   );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const BillStack = createStackNavigator<BillScreenParams>();
 
-function TabTwoNavigator() {
+function BillNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
+    <BillStack.Navigator initialRouteName="BillScreen">
+      <BillStack.Screen
+        name="BillScreen"
+        component={Bill}
+        options={{ 
+          headerTitle: 'View Bill',
+          headerTitleAlign: 'center',
+          headerStyle:{
+              backgroundColor: Colors.PRIMARY
+          },
+          headerTintColor: '#fff'
+        }}
+      />
+      <BillStack.Screen
+        name="MeterReading"
+        component={MeterReading}
         options={{ headerTitle: 'Tab Two Title' }}
       />
-    </TabTwoStack.Navigator>
+      <BillStack.Screen
+        name="PaymentHistory"
+        component={PaymentHistory}
+        options={{ 
+          headerTitle: 'Payment History',
+          headerTitleAlign: 'center',
+          headerStyle:{
+              backgroundColor: Colors.PRIMARY
+          },
+          headerTintColor: '#fff'
+        }}
+      />
+    </BillStack.Navigator>
   );
 }
+
+const OutageStack = createStackNavigator<OutageScreenParams>();
+
+function OutageNavigator() {
+  return (
+    <OutageStack.Navigator>
+      <OutageStack.Screen
+        name="OutageScreen"
+        component={Outage}
+        options={{ 
+          headerTitle: 'Outage',
+          headerTitleAlign: 'center',
+          headerStyle:{
+              backgroundColor: Colors.PRIMARY
+          },
+          headerTintColor: '#fff'
+        }}
+      />
+      <OutageStack.Screen
+        name="OutageMap"
+        component={OutageMap}
+        options={{ 
+          headerTitle: 'Outage Maps',
+          headerTitleAlign: 'center',
+          headerStyle:{
+              backgroundColor: Colors.PRIMARY
+          },
+          headerTintColor: '#fff'
+        }}
+      />
+    </OutageStack.Navigator>
+  );
+}
+const MoreOptionsStack = createStackNavigator<MoreOptionScreenParams>();
+
+function MoreOptionsNavigator() {
+  return (
+    <MoreOptionsStack.Navigator>
+      <MoreOptionsStack.Screen
+        name="MoreOptionsScreen"
+        component={MoreOptions}
+        options={{ headerTitle: 'Tab Two Title' }}
+      />
+    </MoreOptionsStack.Navigator>
+  );
+}
+

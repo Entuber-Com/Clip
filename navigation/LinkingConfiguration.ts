@@ -6,17 +6,33 @@ export default {
     screens: {
       Root: {
         screens: {
-          TabOne: {
+          HomeScreenTab: {
             screens: {
-              TabOneScreen: 'one',
+              HomeScreen: 'home',
             },
           },
-          TabTwo: {
+          BillScreenTab: {
             screens: {
-              TabTwoScreen: 'two',
+              BillScreen: 'bill',
+              PaymentHistory: 'payment-history'
+            },
+          },
+          OutageScreenTab: {
+            screens: {
+              OutageScreen: 'outage',
+            },
+          },
+          MoreOptionsScreenTab: {
+            screens: {
+              MoreOptionsScreen: 'more',
             },
           },
         },
+      },
+      ViewBill: {
+        screens: {
+          ViewBill: 'view-bill'
+        }
       },
       NotFound: '*',
     },
