@@ -31,8 +31,8 @@ const CustomisedFlatList = (props: IProps) => {
 
 const Item = ({ item, itemPressed }: any) => (
     <Card style={{margin: 10}}>
-        <TouchableOpacity>
-            <ListItem noBorder={true} onPress={() => itemPressed(item)}>
+        <TouchableOpacity onPress={() => itemPressed(item)}>
+            <ListItem noBorder={true}>
                 <Left>
                     <Thumbnail source={item.icon}/>
                     <Text style={{flexWrap: 'wrap'}}>{item.title}</Text>

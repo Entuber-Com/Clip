@@ -13,12 +13,14 @@ import PaymentHistory from '../screens/PaymentHistory';
 import MeterReading from '../screens/MeterReading';
 import Home from '../screens/Home';
 import OutageMap from '../screens/OutageMap';
-import { View } from 'react-native';
+import { View, AsyncStorage } from 'react-native';
 import MeterReadingCamera from '../screens/MeterReadingCamera';
 import BillAnalytics from '../screens/BillAnalytics';
 import EnrollPrograms from '../screens/EnrollPrograms';
 import SafetyInformation from '../screens/SafetyInformation';
 import MyAlerts from '../screens/MyAlerts';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useDispatch } from 'react-redux';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -28,7 +30,7 @@ export default function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="HomeScreenTab"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint, keyboardHidesTabBar: true }}
+      tabBarOptions={{ activeTintColor: '#ed7738', inactiveTintColor: Colors.PRIMARY, keyboardHidesTabBar: true }}
     >
       <BottomTab.Screen
         name="HomeScreenTab"
@@ -45,7 +47,11 @@ export default function BottomTabNavigator() {
         options={{
           tabBarLabel: 'Bill',
           unmountOnBlur:true,
-          tabBarIcon: ({ color, focused }) => <Icon style={{ fontSize: 30, marginBottom: -3 }} ios='ios-stats' android='md-stats' color={color} />,
+          tabBarIcon: ({ color, focused }) => 
+          <View style={{borderTopColor: focused ? '#ed7738' : 'none', borderTopWidth: focused ? 5 : 0}}>
+            <Icon style={{ fontSize: 30, marginBottom: -3, color: focused ? '#ed7738' : Colors.PRIMARY }} ios='ios-stats' android='md-stats' />
+          </View>
+
         }}
       />
       <BottomTab.Screen
@@ -77,7 +83,7 @@ function TabBarIcon(
 ) {
   return (
     <View style={{borderTopColor: props.focused ? '#ed7738' : 'none', borderTopWidth: props.focused ? 5 : 0}}>
-      <Icon style={{ fontSize: 30, marginBottom: -3 }} {...props} />
+      <Icon style={{ fontSize: 30, marginBottom: -3, color: props.focused ? '#ed7738' : Colors.PRIMARY }} {...props} />
     </View>);
 }
 
@@ -86,6 +92,14 @@ function TabBarIcon(
 const HomeStack = createStackNavigator<HomeScreenParams>();
 
 function HomeNavigator() {
+  const dispatch =  useDispatch()
+
+  const logout = () => {
+    AsyncStorage.getAllKeys()
+        .then((keys: any) => AsyncStorage.multiRemove(keys))
+        .then(() =>  dispatch({type: 'SIGN_OUT'}));
+  } 
+
   return (
     <HomeStack.Navigator>
       <HomeStack.Screen
@@ -102,6 +116,13 @@ function HomeNavigator() {
                 backgroundColor: '#fff'}}
             >
               <Thumbnail source={require('../assets/images/logo.png')} style={{height: 50, width: 50}}/>
+            </View>
+          ),
+          headerRight: () => (
+            <View style={{padding: 10}}>
+              <TouchableOpacity onPress={logout}>
+                <Icon type='MaterialCommunityIcons' name='logout' style={{color: 'white'}}/>
+              </TouchableOpacity>
             </View>
           ),
           headerTitleAlign: 'center',
@@ -164,7 +185,7 @@ function BillNavigator() {
         name="BillAnalytics"
         component={BillAnalytics}
         options={{ 
-          headerTitle: 'Payment History',
+          headerTitle: 'View Bill',
           headerTitleAlign: 'center',
           headerStyle:{
               backgroundColor: Colors.PRIMARY

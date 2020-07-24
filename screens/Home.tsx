@@ -81,7 +81,7 @@ const Home = (props: any) => {
                         />
                     </View>
                     <View  style={{borderRadius: 5, backgroundColor: '#f1f1f1', margin: 10, flexWrap: 'wrap',padding: 20}}>
-                        <TextTicker
+                        {/* <TextTicker
                             isRTL={false}
                             style={{  flexWrap: 'wrap' }}
                             duration={6000}
@@ -90,9 +90,9 @@ const Home = (props: any) => {
                             repeatSpacer={50}
                             marqueeDelay={0}
                             shouldAnimateTreshold={50}
-                        >
-                             <Icon type='Feather' style={{fontSize: 20, color: item['Change'].includes('-') ? 'green':'red'}} name={item['Change'].includes('-') ? 'arrow-down-circle' : 'arrow-up-circle'} />  <Text style={{fontSize: 22}}>{item['Change'] || '0%'}</Text> vs This Month Last Year 
-                        </TextTicker>
+                        > */}
+                            <Text> <Icon type='Feather' style={{fontSize: 20, color: item['Change'].includes('-') ? 'green':'red'}} name={item['Change'].includes('-') ? 'arrow-down-circle' : 'arrow-up-circle'} />  <Text style={{fontSize: 22}}>{item['Change'] || '0%'}</Text> vs This Month Last Year</Text> 
+                        {/* </TextTicker> */}
                     </View>
                 </View>
             </Card>

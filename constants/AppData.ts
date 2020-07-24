@@ -18,15 +18,15 @@ export const AppData = {
                     "IconType": "FontAwesome5",
                     "Title": "Current Electric Usage",
                     "Default": "Dollars",
-                    "Options": ["$", "KwH"],
+                    "Options": ["$", "kWh"],
                     "DefaultIndex": 0,
                     "Dollars": {
                         "Daily": " $20.39 ",
                         "Total": " $632.21 "    
                     },
-                    "KwH": {
-                        "Daily": " 112.3 KwH ",
-                        "Total": " 3480 KwH ",
+                    "kWh": {
+                        "Daily": " 112.3 kWh ",
+                        "Total": " 3480 kWh ",
                     },
                     "Change": "3.40%"
                 }, 
@@ -36,13 +36,13 @@ export const AppData = {
                     "IconType": "Ionicons",
                     "Title": "Current Gas Usage",
                     "Default": "Dollars",
-                    "Options": ["$", "THM"],
+                    "Options": ["$", "thm"],
                     "DefaultIndex": 0,
                     "Dollars": {
                         "Daily": " $7.46 ",
                         "Total": " $231.14 "     
                     },
-                    "THM": {
+                    "thm": {
                         "Daily": " 9.9 thm ",
                         "Total": " 306.6 thm ",
                     },
@@ -166,69 +166,69 @@ export const AppData = {
         {
             "Type": "Gas delivery",
             "Percent": "12%",
+            "PercentValue":12,
             "Cost": "$105.98"
         },
         {
             "Type": "Gas Supply",
             "Percent": "14%",
+            "PercentValue":14,
             "Cost": "$125.16"
         },
         {
             "Type": "Electric Delivery",
             "Percent": "29%",
+            "PercentValue":29,
             "Cost": "$248.04"
         },
         {
             "Type": "Electric Supply",
             "Percent": "44%",
+            "PercentValue":44,
             "Cost": "$384.17"
         }
     ],
-    "Bill Usage": [
-        {
+    "Bill Usage": {
+        "Electric": [{
             "Month": "April",
-            "Electric Usage (kWh)": "3.13",
+            "Usage": 3.13,
             "Avg. Temprature (Deg F)": "50.00"
         },
         {
             "Month": "May",
-            "Electric Usage (kWh)": "3.41",
+            "Usage": 3.41,
             "Avg. Temprature (Deg F)": "51.38"
         },
         {
             "Month": "June",
-            "Electric Usage (kWh)": "5.40",
+            "Usage": 5.40,
             "Avg. Temprature (Deg F)": "67.03"
         },
         {
             "Month": "July",
-            "Electric Usage (kWh)": "3.48",
+            "Usage": 3.48,
             "Avg. Temprature (Deg F)": "76.97"
-        },
-        {
-            "Month": "Month",
-            "Electric Usage (kWh)": "Gas Usage (Therms)",
-            "Avg. Temprature (Deg F)": "Avg. Temprature (Deg F)"
-        },
+        }],
+        "Gas": [
         {
             "Month": "April",
-            "Electric Usage (kWh)": "16.00",
+            "Usage": 16.00,
             "Avg. Temprature (Deg F)": "50.00"
         },
         {
             "Month": "May",
-            "Electric Usage (kWh)": "17.30",
+            "Usage": 17.30,
             "Avg. Temprature (Deg F)": "51.38"
         },
         {
             "Month": "June",
-            "Electric Usage (kWh)": "10.60",
+            "Usage": 10.60,
             "Avg. Temprature (Deg F)": "67.03"
         },
         {
             "Month": "July",
-            "Electric Usage (kWh)": "9.90",
+            "Usage": 9.90,
             "Avg. Temprature (Deg F)": "76.97"
-        }
-    ]
+        }]
+    }
 }

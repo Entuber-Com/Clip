@@ -8,8 +8,12 @@ import moment from 'moment';
 import { AppData } from '../constants/AppData';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Colors from '../constants/Colors';
+import PaymentModal from './PaymentModal';
+import { useState } from 'react';
 
 export default function Bill(props: any) {
+    const [paymentModalVisible, setPaymentModalVisible] = useState<boolean>(false);
+
     const onItemPressed = (item: any) => {
         if (item.title === 'Payment History') {
             props.navigation.navigate('PaymentHistory')
@@ -48,6 +52,7 @@ export default function Bill(props: any) {
                     alignSelf: 'center',
                     justifyContent: 'center'
                    }}
+                   onPress={() => setPaymentModalVisible(true)}
                 >
                     <TouchableOpacity>
                         <Text style={{color: '#3377bb', fontSize: 20}}>Pay Bill</Text>
@@ -59,6 +64,9 @@ export default function Bill(props: any) {
                     onItemPressed={onItemPressed}
                 />
             </View>
+            <PaymentModal modalVisible={paymentModalVisible}
+                setModalVisible={(event: boolean) => setPaymentModalVisible(event)}
+            />
         </View>
     );
 }

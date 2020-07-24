@@ -4,6 +4,11 @@ export type RootStackParamList = {
   ViewBill: undefined;
 };
 
+export type AuthStackParamList = {
+  Login: undefined;
+  NotFound: undefined;
+}
+
 export type BottomTabParamList = {
   HomeScreenTab: undefined;
   BillScreenTab: undefined;
