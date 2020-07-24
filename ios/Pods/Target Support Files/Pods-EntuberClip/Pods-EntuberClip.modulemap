@@ -1,0 +1,6 @@
+module Pods_EntuberClip {
+  umbrella header "Pods-EntuberClip-umbrella.h"
+
+  export *
+  module * { export * }
+}
