@@ -63,7 +63,7 @@ export const Login = (props: any) => {
       }
 
       const payload = {
-        email: email.value,
+        email: email.value.toLowerCase(),
         password: password.value
       }
 
@@ -162,6 +162,18 @@ export const Login = (props: any) => {
                             >
                                 <Icon  android='md-log-in' ios='ios-log-in'></Icon>
                                 <Text>Login</Text>
+                            </Button>    
+                        </CardItem>
+                        <CardItem style={{justifyContent: 'center'}}>
+                            <Button 
+                                // style={styles.alignButton}
+                                dark={true}
+                                iconLeft={true}
+                                // disabled={loading || email.hasError || password.hasError}
+                                onPress={() => props.navigation.navigate('FaceDetection')}
+                            >
+                                <Icon  android='md-log-in' ios='ios-log-in'></Icon>
+                                <Text>Login with Face ID</Text>
                             </Button>    
                         </CardItem>
                         <CardItem last style={{justifyContent:'center'}}>

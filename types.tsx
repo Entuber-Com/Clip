@@ -7,6 +7,7 @@ export type RootStackParamList = {
 export type AuthStackParamList = {
   Login: undefined;
   NotFound: undefined;
+  FaceDetection: undefined;
 }
 
 export type BottomTabParamList = {

@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import {View, StyleSheet, KeyboardAvoidingView, Platform, Keyboard, SafeAreaView} from 'react-native';
-import {Text, Grid, Col, Button, Row} from 'native-base';
-import { TextInput, TouchableWithoutFeedback } from 'react-native-gesture-handler'
+import {View, StyleSheet, KeyboardAvoidingView, Platform, Keyboard, SafeAreaView, Alert, Linking} from 'react-native';
+import {Text, Grid, Col, Button, Row,Icon} from 'native-base';
+import { TextInput, TouchableWithoutFeedback, TouchableOpacity } from 'react-native-gesture-handler'
+import Colors from '../constants/Colors';
 
 const MeterReading = (props: any) => {
     const [electricMeterInput, setElectricMeterInput] = useState('')
@@ -55,9 +56,15 @@ const MeterReading = (props: any) => {
                     </View>
                     <View style={{flexDirection: 'row',justifyContent: 'center',alignItems:'center'}}>
                         <Button style={{borderRadius: 5, backgroundColor: '#3377bb',justifyContent: 'center',alignItems:'center'}}
+                            onPress={() => Alert.alert('Submitted')}
                         >
                             <Text style={{color:'white'}}>Submit Reading(s)</Text>
                         </Button>
+                    </View>
+                    <View style={{borderColor: 'black', borderWidth: 1, justifyContent: 'center',alignItems: 'center',padding:20, margin:10}}>
+                        <TouchableOpacity style={{flexDirection: 'row'}} onPress={()=>{ Linking.openURL('https://www.cenhud.com/forms/meterreading/')}}>
+                            <Text style={{color: Colors.PRIMARY}} >How do I read my meter ? </Text><Icon type="MaterialIcons" name="navigate-next" style={{color: Colors.PRIMARY, justifyContent: 'center', alignItems:'center'}}/>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </TouchableWithoutFeedback>

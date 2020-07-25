@@ -9,6 +9,8 @@ import SegmentedControlTab from "react-native-segmented-control-tab";
 import TextTicker from 'react-native-text-ticker';
 import PaymentModal from './PaymentModal';
 import { FloatingIcon } from '../components/FloatingIcon';
+import RNPickerSelect from 'react-native-picker-select';
+
 
 const Home = (props: any) => {
     const [charges, setCharges] = useState<any>(AppData['Customer']['Usage']);
@@ -102,7 +104,33 @@ const Home = (props: any) => {
     return (
         <View style={{flex: 1}}>
             <View style={{flex: 0.5, backgroundColor: '#3377bb', alignItems:'center', justifyContent: 'center'}}>
-                <Text style={{fontSize: 16, fontWeight:'bold', color: '#fff', textAlign:"center", marginTop: 5}}>{getGreetingTime(moment())}</Text>
+                <RNPickerSelect
+                        value={AppData.Customer["Customer Addtess"]}
+                        onValueChange={(value) => console.log(value)}
+                        placeholder={{
+                            label:'Customer Account',
+                            value: null,
+                            color: '#ccc'
+                        }}
+                        style={{
+                            inputAndroid:{
+                                color: '#fff'
+                            },
+                            inputIOS:{
+                                color: '#fff'
+                            }
+                        }}
+                        items={[
+                            { 
+                              label: `Account: ${AppData.Customer["Customer Number"]}, Device: ${AppData.Customer["Device"]}, Type: ${AppData.Customer["Device Type"]}`,
+                              value: AppData.Customer["Customer Addtess"],
+                              key: AppData.Customer["Customer Addtess"],
+                              color: 'black',
+                              inputLabel: AppData.Customer["Customer Addtess"]
+                             }
+                        ]}
+                />
+                <Text style={{fontSize: 16, fontWeight:'bold', color: '#fff', textAlign:"center"}}>{getGreetingTime(moment())}</Text>
                 <Card style={{backgroundColor: '#ed7738',padding:20, alignItems:'center', justifyContent: 'center'}}>
                     <Text style={{fontSize: 30, color: '#fff'}}>{AppData['Customer']['Charges'] || '$0'}</Text>
                     <Text style={{ color: '#fff'}}>{moment(new Date(AppData['Customer']['Date'])).format('ddd MMM D') || 'N/A'}</Text>

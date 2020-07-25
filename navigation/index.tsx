@@ -13,6 +13,7 @@ import { StoreModel } from '../redux/Model/Store.model';
 import { fetchUserToken } from '../services/AuthService';
 import { Login } from '../screens/Authentication/Login';
 import { AppLoading } from 'expo';
+import FaceDetection from '../screens/Authentication/FaceDetection';
 
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
@@ -86,6 +87,7 @@ function AuthNavigator() {
   return (
     <AuthStack.Navigator screenOptions={{ headerShown: false }}>
       <AuthStack.Screen name="Login" component={Login} />
+      <AuthStack.Screen name="FaceDetection" component={FaceDetection} />
       <AuthStack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
     </AuthStack.Navigator>
   );

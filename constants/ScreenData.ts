@@ -32,6 +32,11 @@ export const OutageScreenData = [
       title: "Check Outage Status",
       icon: require('../assets/images/Icons/Check_Outage_Status.png')
     },
+    {
+      id: "4",
+      title: "Report Gas Leak",
+      icon: require('../assets/images/Icons/Report_Gas_Leak.png')
+    },
 ]; 
 
 export const MoreOptionsScreenData = [

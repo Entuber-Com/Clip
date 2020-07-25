@@ -10,6 +10,8 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Colors from '../constants/Colors';
 import PaymentModal from './PaymentModal';
 import { useState } from 'react';
+import RNPickerSelect from 'react-native-picker-select';
+
 
 export default function Bill(props: any) {
     const [paymentModalVisible, setPaymentModalVisible] = useState<boolean>(false);
@@ -30,7 +32,33 @@ export default function Bill(props: any) {
     return (
         <View style={styles.container}>
             <View style={{flex: 0.5, alignItems: 'center', justifyContent: 'center', backgroundColor: Colors.PRIMARY}}>
-                <Text style={{fontSize: 30,color: '#fff'}}>{AppData['Customer']['Charges'] || '$0'}</Text>
+                <RNPickerSelect
+                        value={AppData.Customer["Customer Addtess"]}
+                        onValueChange={(value) => console.log(value)}
+                        placeholder={{
+                            label:'Customer Account',
+                            value: null,
+                            color: '#ccc'
+                        }}
+                        style={{
+                            inputAndroid:{
+                                color: '#fff'
+                            },
+                            inputIOS:{
+                                color: '#fff'
+                            }
+                        }}
+                        items={[
+                            { 
+                              label: `Account: ${AppData.Customer["Customer Number"]}, Device: ${AppData.Customer["Device"]}, Type: ${AppData.Customer["Device Type"]}`,
+                              value: AppData.Customer["Customer Addtess"],
+                              key: AppData.Customer["Customer Addtess"],
+                              color: 'black',
+                              displayValue: true
+                             }
+                        ]}
+                />
+                <Text style={{fontSize: 26,color: '#fff'}}>{AppData['Customer']['Charges'] || '$0'}</Text>
                 <Text style={{color: '#ffffff'}}></Text>
                 <Text note style={{color: '#ffffff'}}>You are {moment(new Date('08/10/2020')).diff(moment(),'days')} days into your billing period</Text>
                 <Text note style={{color: '#ffffff'}}>Next Meter Reading Date: 08/10/2020</Text>

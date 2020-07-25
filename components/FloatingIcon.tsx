@@ -5,8 +5,8 @@ import React, { Component, useMemo, useEffect, useState } from 'react';
 import { StyleSheet, View, Image, TouchableOpacity, Alert, Modal, Dimensions } from 'react-native';
 //import all the components we are going to use.
 import { GiftedChat } from "react-native-gifted-chat";
-import { DirectLine } from "botframework-directlinejs";
-import ReactWebChat, { createDirectLine } from 'botframework-webchat';
+// import { DirectLine } from "botframework-directlinejs";
+// import ReactWebChat, { createDirectLine } from 'botframework-webchat';
 
 
 
@@ -44,9 +44,7 @@ export const FloatingIcon = () => {
           <Image
             //We are making FAB using TouchableOpacity with an image
             //We are using online image here
-             source={{
-                uri:'https://raw.githubusercontent.com/AboutReact/sampleresource/master/plus_icon.png',
-            }}
+             source={require('../assets/images/Icons/Dog_Face.png')}
             //You can use you project image Example below
             //source={require('./images/float-add-icon.png')}
             style={styles.FloatingButtonStyle}
@@ -158,18 +156,18 @@ const styles = StyleSheet.create({
 
   TouchableOpacityStyle: {
     position: 'absolute',
-    width: 50,
-    height: 50,
+    width: 80,
+    height: 80,
     alignItems: 'center',
     justifyContent: 'center',
-    right: 30,
-    bottom: 30,
+    right: 20,
+    bottom: 5,
   },
 
   FloatingButtonStyle: {
     resizeMode: 'contain',
-    width: 50,
-    height: 50,
+    width: 80,
+    height: 80,
     //backgroundColor:'black'
   },
 
@@ -180,7 +178,7 @@ const styles = StyleSheet.create({
     marginTop: 22
   },
   modalView: {
-    margin: 20,
+    //margin: 20,
     backgroundColor: "white",
     borderRadius: 20,
     padding: 20,

@@ -21,6 +21,7 @@ import SafetyInformation from '../screens/SafetyInformation';
 import MyAlerts from '../screens/MyAlerts';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useDispatch } from 'react-redux';
+import {Image} from 'react-native'
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -108,14 +109,15 @@ function HomeNavigator() {
         options={{ 
           headerTitle: () => (
             <View style={{
-                width: 50,
+                width: 200,
                 justifyContent:'center',
                 alignItems:'center',
                 height: 50,
                 borderRadius: 5,
+                paddingLeft: 75,
                 backgroundColor: '#fff'}}
             >
-              <Thumbnail source={require('../assets/images/logo.png')} style={{height: 50, width: 50}}/>
+              <Image source={require('../assets/images/logo1.png')} style={{height: 50, resizeMode:'center', }}/>
             </View>
           ),
           headerRight: () => (
