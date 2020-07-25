@@ -52,12 +52,11 @@ export default function Outage(props: any) {
                   }}
                   items={[
                       { 
-                        label: `Account: ${AppData.Customer["Customer Number"]}, Device: ${AppData.Customer["Device"]}, Type: ${AppData.Customer["Device Type"]}`,
+                        label: `Account: ${AppData.Customer["Customer Number"]} - ${AppData.Customer["Customer Addtess"]}`,
                         value: AppData.Customer["Customer Addtess"],
-                        key: AppData.Customer["Customer Addtess"],
                         color: 'black',
                         displayValue: true
-                       }
+                      }
                   ]}
           />
           <Grid>

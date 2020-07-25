@@ -50,12 +50,11 @@ export default function Bill(props: any) {
                         }}
                         items={[
                             { 
-                              label: `Account: ${AppData.Customer["Customer Number"]}, Device: ${AppData.Customer["Device"]}, Type: ${AppData.Customer["Device Type"]}`,
-                              value: AppData.Customer["Customer Addtess"],
-                              key: AppData.Customer["Customer Addtess"],
-                              color: 'black',
-                              displayValue: true
-                             }
+                                label: `Account: ${AppData.Customer["Customer Number"]} - ${AppData.Customer["Customer Addtess"]}`,
+                                value: AppData.Customer["Customer Addtess"],
+                                color: 'black',
+                                displayValue: true
+                            }
                         ]}
                 />
                 <Text style={{fontSize: 26,color: '#fff'}}>{AppData['Customer']['Charges'] || '$0'}</Text>

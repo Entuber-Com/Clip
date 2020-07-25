@@ -122,12 +122,11 @@ const Home = (props: any) => {
                         }}
                         items={[
                             { 
-                              label: `Account: ${AppData.Customer["Customer Number"]}, Device: ${AppData.Customer["Device"]}, Type: ${AppData.Customer["Device Type"]}`,
+                              label: `Account: ${AppData.Customer["Customer Number"]} - ${AppData.Customer["Customer Addtess"]}`,
                               value: AppData.Customer["Customer Addtess"],
-                              key: AppData.Customer["Customer Addtess"],
                               color: 'black',
-                              inputLabel: AppData.Customer["Customer Addtess"]
-                             }
+                              displayValue: true
+                            }
                         ]}
                 />
                 <Text style={{fontSize: 16, fontWeight:'bold', color: '#fff', textAlign:"center"}}>{getGreetingTime(moment())}</Text>
