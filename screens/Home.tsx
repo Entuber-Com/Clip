@@ -8,6 +8,7 @@ import moment from 'moment';
 import SegmentedControlTab from "react-native-segmented-control-tab";
 import TextTicker from 'react-native-text-ticker';
 import PaymentModal from './PaymentModal';
+import { FloatingIcon } from '../components/FloatingIcon';
 
 const Home = (props: any) => {
     const [charges, setCharges] = useState<any>(AppData['Customer']['Usage']);
@@ -141,6 +142,7 @@ const Home = (props: any) => {
             <PaymentModal modalVisible={paymentModalVisible}
                 setModalVisible={(event: boolean) => setPaymentModalVisible(event)}
             />
+            <FloatingIcon />
         </View>
     )
 }
