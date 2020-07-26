@@ -21,7 +21,7 @@ export default function Outage(props: any) {
 
   return (
     <View style={styles.container}>
-      <View style={{flex: 0.4, backgroundColor: Colors.PRIMARY}}>
+      <View style={{flex: 0.3, backgroundColor: Colors.PRIMARY}}>
           {/* <TextTicker
             isRTL={false}
             style={{  fontSize: 24, flexWrap: 'wrap', color: 'white', marginBottom: 5, marginTop: 5 }}
@@ -33,9 +33,8 @@ export default function Outage(props: any) {
           > */}
             {/* <Text></Text><Icon type="Entypo" name="location-pin" />{AppData.Customer["Customer Addtess"]}  */}
           {/* </TextTicker> */}
-
           <RNPickerSelect
-                  value={AppData.Customer["Customer Addtess"]}
+                  value={AppData.Customer["Customer Address"]}
                   onValueChange={(value) => console.log(value)}
                   placeholder={{
                       label:'Customer Account',
@@ -43,17 +42,24 @@ export default function Outage(props: any) {
                       color: '#ccc'
                   }}
                   style={{
-                      inputAndroid:{
-                          color: '#fff'
-                      },
-                      inputIOS:{
-                          color: '#fff'
-                      }
-                  }}
+                    inputAndroid:{
+                        color: '#fff',
+                        alignItems:'center', 
+                        justifyContent: 'center',
+                        textAlign: 'center'
+                    },
+                    inputIOS:{
+                        color: '#fff',
+                        alignItems:'center', 
+                        justifyContent: 'center',
+                        textAlign: 'center',
+                        padding: 10
+                    }
+                }}
                   items={[
                       { 
-                        label: `Account: ${AppData.Customer["Customer Number"]} - ${AppData.Customer["Customer Addtess"]}`,
-                        value: AppData.Customer["Customer Addtess"],
+                        label: `Account: ${AppData.Customer["Customer Number"]} - ${AppData.Customer["Customer Address"]}`,
+                        value: AppData.Customer["Customer Address"],
                         color: 'black',
                         displayValue: true
                       }
@@ -70,7 +76,7 @@ export default function Outage(props: any) {
             </Col>
           </Grid>
       </View>
-      <View style={{flex: 0.6, backgroundColor: '#f1f1f1'}}>
+      <View style={{flex: 0.7, backgroundColor: '#f1f1f1'}}>
         <CustomisedFlatList array={OutageScreenData}
             onItemPressed={onItemPressed}
         />

@@ -62,7 +62,7 @@ const Home = (props: any) => {
                             repeatSpacer={50}
                             marqueeDelay={0}
                         >
-                            <Text style={{fontWeight: 'bold'}}>Total:</Text> {item[item['Default']]['Current'] || '$0'}
+                            <Text style={{fontWeight: 'bold'}}>Total:</Text> {item[item['Default']]['Daily'] || '$0'}
                         </TextTicker>
                     
                         <TextTicker
@@ -74,7 +74,7 @@ const Home = (props: any) => {
                             repeatSpacer={50}
                             marqueeDelay={0}
                         >
-                            <Text style={{fontWeight: 'bold'}}>Last Year:</Text> {item[item['Default']]['Previous'] || '$0'}
+                            <Text style={{fontWeight: 'bold'}}>Last Year:</Text> {item[item['Default']]['Total'] || '$0'}
                         </TextTicker>
                         <SegmentedControlTab
                             tabStyle={{justifyContent: 'center', alignItems:'center', marginTop: 5}}
@@ -105,7 +105,7 @@ const Home = (props: any) => {
         <View style={{flex: 1}}>
             <View style={{flex: 0.5, backgroundColor: '#3377bb', alignItems:'center', justifyContent: 'center'}}>
                 <RNPickerSelect
-                        value={AppData.Customer["Customer Addtess"]}
+                        value={AppData.Customer["Customer Address"]}
                         onValueChange={(value) => console.log(value)}
                         placeholder={{
                             label:'Customer Account',
@@ -114,16 +114,22 @@ const Home = (props: any) => {
                         }}
                         style={{
                             inputAndroid:{
-                                color: '#fff'
+                                color: '#fff',
+                                alignItems:'center', 
+                                justifyContent: 'center',
+                                textAlign: 'center'
                             },
                             inputIOS:{
-                                color: '#fff'
+                                color: '#fff',
+                                alignItems:'center', 
+                                justifyContent: 'center',
+                                textAlign: 'center'
                             }
                         }}
                         items={[
                             { 
-                              label: `Account: ${AppData.Customer["Customer Number"]} - ${AppData.Customer["Customer Addtess"]}`,
-                              value: AppData.Customer["Customer Addtess"],
+                              label: `Account: ${AppData.Customer["Customer Number"]} - ${AppData.Customer["Customer Address"]}`,
+                              value: AppData.Customer["Customer Address"],
                               color: 'black',
                               displayValue: true
                             }

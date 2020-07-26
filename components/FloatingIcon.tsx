@@ -9,6 +9,7 @@ import moment from 'moment';
 // import { DirectLine } from "botframework-directlinejs";
 // import ReactWebChat, { createDirectLine } from 'botframework-webchat';
 import HTMLView from 'react-native-htmlview';
+import { Platform } from 'react-native';
 
 
 
@@ -289,8 +290,8 @@ const styles = StyleSheet.create({
 
   TouchableOpacityStyle: {
     // position: 'absolute',
-    width: 50,
-    height: 50,
+    width: Platform.OS==="ios"?40:50,
+    height: Platform.OS ==="ios"?40:50,
     alignItems: 'center',
     justifyContent: 'center',
     // right: 20,
@@ -299,8 +300,8 @@ const styles = StyleSheet.create({
 
   FloatingButtonStyle: {
     resizeMode: 'contain',
-    width: 50,
-    height: 50,
+    width: Platform.OS==="ios"?40:50,
+    height: Platform.OS ==="ios"?40:50,
     // opacity: 0.5
   },
 

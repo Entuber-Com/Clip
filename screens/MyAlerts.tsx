@@ -15,7 +15,7 @@ const MyAlerts = (props: any) => {
         // >
         //     <SafeAreaView style={{flex: 1}}>
         //     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <View style={{ backgroundColor: '#f1f1f1', padding: 10}}>
+                <View style={{ backgroundColor: '#f1f1f1', padding: 10, flex:1}}>
                     <View >
                         <Text style={[styles.meterTextHeader, {fontWeight: 'bold'}]}>By enabling Push Notifications, you are allowing CHUD to
                              send notifications straight to your device in regard to the following</Text>
@@ -80,7 +80,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'flex-start',
         flexWrap: 'wrap',
-        flex: 1,
         marginVertical: 4,
         padding: 10
     },

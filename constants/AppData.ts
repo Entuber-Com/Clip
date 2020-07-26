@@ -3,7 +3,7 @@ export const AppData = {
         {
             "Customer Number": "500001",
             "Customer Name": "David Black",
-            "Customer Addtess": "26, High Street, Poughkeepsie, NY 12601",
+            "Customer Address": "26, High Street, Poughkeepsie, NY 12601",
             "Functional Location": "30001",
             "Connection Object": "50001",
             "Device": "909090",

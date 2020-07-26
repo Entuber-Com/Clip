@@ -13,7 +13,7 @@ import PaymentHistory from '../screens/PaymentHistory';
 import MeterReading from '../screens/MeterReading';
 import Home from '../screens/Home';
 import OutageMap from '../screens/OutageMap';
-import { View, AsyncStorage } from 'react-native';
+import { View, AsyncStorage, Platform } from 'react-native';
 import MeterReadingCamera from '../screens/MeterReadingCamera';
 import BillAnalytics from '../screens/BillAnalytics';
 import EnrollPrograms from '../screens/EnrollPrograms';
@@ -117,13 +117,14 @@ function HomeNavigator() {
                 height: 50,
                 borderRadius: 5,
                 paddingLeft: 75,
+                marginBottom: 15,
                 backgroundColor: '#fff'}}
             >
-              <Image source={require('../assets/images/logo1.png')} style={{height: 50, resizeMode:'center', }}/>
+              <Image source={require('../assets/images/logo1.png')} style={{height: 50, padding: 0, resizeMode: Platform.OS==="ios"?'contain':'center'}}/>
             </View>
           ),
           headerRight: () => (
-            <View style={{padding: 10}}>
+            <View style={{padding: Platform.OS==="ios"?8:10}}>
               <TouchableOpacity onPress={logout}>
                 <Icon type='MaterialCommunityIcons' name='logout' style={{color: 'white'}}/>
               </TouchableOpacity>

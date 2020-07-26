@@ -33,7 +33,7 @@ export default function Bill(props: any) {
         <View style={styles.container}>
             <View style={{flex: 0.5, alignItems: 'center', justifyContent: 'center', backgroundColor: Colors.PRIMARY}}>
                 <RNPickerSelect
-                        value={AppData.Customer["Customer Addtess"]}
+                        value={AppData.Customer["Customer Address"]}
                         onValueChange={(value) => console.log(value)}
                         placeholder={{
                             label:'Customer Account',
@@ -42,16 +42,22 @@ export default function Bill(props: any) {
                         }}
                         style={{
                             inputAndroid:{
-                                color: '#fff'
+                                color: '#fff',
+                                alignItems:'center', 
+                                justifyContent: 'center',
+                                textAlign: 'center'
                             },
                             inputIOS:{
-                                color: '#fff'
+                                color: '#fff',
+                                alignItems:'center', 
+                                justifyContent: 'center',
+                                textAlign: 'center'
                             }
                         }}
                         items={[
                             { 
-                                label: `Account: ${AppData.Customer["Customer Number"]} - ${AppData.Customer["Customer Addtess"]}`,
-                                value: AppData.Customer["Customer Addtess"],
+                                label: `Account: ${AppData.Customer["Customer Number"]} - ${AppData.Customer["Customer Address"]}`,
+                                value: AppData.Customer["Customer Address"],
                                 color: 'black',
                                 displayValue: true
                             }
