@@ -10,6 +10,8 @@ import moment from 'moment';
 // import ReactWebChat, { createDirectLine } from 'botframework-webchat';
 import HTMLView from 'react-native-htmlview';
 import { Platform } from 'react-native';
+import { Icon, ListItem } from 'native-base';
+import { TouchableHighlight } from 'react-native-gesture-handler';
 
 
 
@@ -38,12 +40,13 @@ export const FloatingIcon = () => {
 
   
     return (
-      <View>
-
+      <>
+        
+        {/* <View style = {{flex:1, justifyContent: 'center', alignItems: 'center'}}> */}
         <TouchableOpacity
-          activeOpacity={0.7}
+          //activeOpacity={0.5}
           onPress={clickHandler}
-          style={styles.TouchableOpacityStyle}
+          //style={styles.TouchableOpacityStyle}
           >
           <Image
             //We are making FAB using TouchableOpacity with an image
@@ -54,6 +57,7 @@ export const FloatingIcon = () => {
             style={styles.FloatingButtonStyle}
           />
         </TouchableOpacity>
+        {/* </View> */}
           {
             modalVisible && <ChatScreen token={token}
               conversationId={convoID}
@@ -61,7 +65,7 @@ export const FloatingIcon = () => {
               modalVisible={modalVisible}
             />
           }
-      </View>
+      </>
      
     );
   
@@ -124,8 +128,9 @@ class ChatScreen extends React.PureComponent<any,any> {
           messages: GiftedChat.append(previousState.messages, messages).sort((a: any, b: any) => moment(a.createdAt).diff(moment(b.createdAt)))
       }
     }, () => {
+      let newMessage: any = []
       if (messages.find((message: any) => message.text && ['hi','hello','hey'].includes(message.text.toLowerCase()))) {
-        messages = [
+        newMessage = [
           
           {
             _id: `${this.IDGen()}_1`,
@@ -164,7 +169,7 @@ class ChatScreen extends React.PureComponent<any,any> {
       }
 
       if (messages.find((message: any) => message.text && ['talk to a person','agent'].includes(message.text.toLowerCase()))) {
-        messages = [
+        newMessage = [
           
           {
             _id: this.IDGen(),
@@ -180,7 +185,7 @@ class ChatScreen extends React.PureComponent<any,any> {
         ]
       }
       if (messages.find((message: any) => message.text && ['gas leak','leak'].includes(message.text.toLowerCase()))) {
-        messages = [
+        newMessage = [
           
           {
             _id: `${this.IDGen()}_1`,
@@ -213,13 +218,17 @@ class ChatScreen extends React.PureComponent<any,any> {
           }
         ]
       }
-      this.timer = setTimeout(() => {
-        this.setState((previousState: any) => {
-          return {
-              messages: GiftedChat.append(previousState.messages, messages).sort((a: any, b: any) => moment(a.createdAt).diff(moment(b.createdAt)))
-          }
-        })
-      }, 1000);
+      if(newMessage.length>0)
+        {
+          this.timer = setTimeout(() => {
+            this.setState((previousState: any) => {
+              return {
+                  messages: GiftedChat.append(previousState.messages, newMessage).sort((a: any, b: any) => moment(a.createdAt).diff(moment(b.createdAt)))
+              }
+            })
+          }, 1000);
+        }
+      
     });
       
     
@@ -255,6 +264,7 @@ class ChatScreen extends React.PureComponent<any,any> {
     return(
       <Modal
               animationType="slide"
+              presentationStyle = 'fullScreen'
               transparent={true}
               visible={this.props.modalVisible}
               onRequestClose={() => {
@@ -263,6 +273,9 @@ class ChatScreen extends React.PureComponent<any,any> {
           >
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
+            <ListItem onPress = {() => {this.props.setModalVisible(false);}} style = {{justifyContent: "flex-end", alignItems: "flex-end",}}>
+              <Icon type = 'AntDesign' name = 'closecircleo'></Icon>
+            </ListItem>
               <GiftedChat
                 user={{
                   _id: 1
@@ -290,8 +303,8 @@ const styles = StyleSheet.create({
 
   TouchableOpacityStyle: {
     // position: 'absolute',
-    width: Platform.OS==="ios"?40:50,
-    height: Platform.OS ==="ios"?40:50,
+    width: Platform.OS==="ios"?'100%':50,
+    height: Platform.OS ==="ios"?'100%':50,
     alignItems: 'center',
     justifyContent: 'center',
     // right: 20,
@@ -317,7 +330,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 20,
     width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height/2,
+    height: Dimensions.get('window').height,
     // alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
