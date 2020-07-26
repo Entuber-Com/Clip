@@ -62,7 +62,7 @@ const Home = (props: any) => {
                             repeatSpacer={50}
                             marqueeDelay={0}
                         >
-                            <Text style={{fontWeight: 'bold'}}>Daily Average:</Text> {item[item['Default']]['Daily'] || '$0'}
+                            <Text style={{fontWeight: 'bold'}}>Total:</Text> {item[item['Default']]['Current'] || '$0'}
                         </TextTicker>
                     
                         <TextTicker
@@ -74,7 +74,7 @@ const Home = (props: any) => {
                             repeatSpacer={50}
                             marqueeDelay={0}
                         >
-                            <Text style={{fontWeight: 'bold'}}>Total:</Text> {item[item['Default']]['Total'] || '$0'}
+                            <Text style={{fontWeight: 'bold'}}>Last Year:</Text> {item[item['Default']]['Previous'] || '$0'}
                         </TextTicker>
                         <SegmentedControlTab
                             tabStyle={{justifyContent: 'center', alignItems:'center', marginTop: 5}}
@@ -169,7 +169,7 @@ const Home = (props: any) => {
             <PaymentModal modalVisible={paymentModalVisible}
                 setModalVisible={(event: boolean) => setPaymentModalVisible(event)}
             />
-            <FloatingIcon />
+            {/* <FloatingIcon /> */}
         </View>
     )
 }

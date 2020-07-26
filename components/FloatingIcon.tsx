@@ -2,11 +2,13 @@
 import React, { Component, useMemo, useEffect, useState } from 'react';
 //import react in our code.
 
-import { StyleSheet, View, Image, TouchableOpacity, Alert, Modal, Dimensions } from 'react-native';
+import { StyleSheet, View, Image, TouchableOpacity, Alert, Modal, Dimensions,Text } from 'react-native';
 //import all the components we are going to use.
 import { GiftedChat } from "react-native-gifted-chat";
+import moment from 'moment';
 // import { DirectLine } from "botframework-directlinejs";
 // import ReactWebChat, { createDirectLine } from 'botframework-webchat';
+import HTMLView from 'react-native-htmlview';
 
 
 
@@ -16,7 +18,7 @@ export const FloatingIcon = () => {
   const [convoID, setconvoID]=useState('');
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
-  useEffect(() => {
+  /* useEffect(() => {
     fetch('https://powerva.microsoft.com/api/botmanagement/v1/directline/directlinetoken?botId=36f6d902-a9cd-43c6-b595-9cd764fba32f&tenantId=2c6f0b1a-2a8d-46d7-8f02-95b9ba145ff8')
     .then(async (response: any) => {
       if (response.ok) {
@@ -26,7 +28,7 @@ export const FloatingIcon = () => {
       }
     })
 
-  }, [])
+  }, []) */
   
   const clickHandler = () => {
     //function to handle click on floating Action Button
@@ -40,7 +42,8 @@ export const FloatingIcon = () => {
         <TouchableOpacity
           activeOpacity={0.7}
           onPress={clickHandler}
-          style={styles.TouchableOpacityStyle}>
+          style={styles.TouchableOpacityStyle}
+          >
           <Image
             //We are making FAB using TouchableOpacity with an image
             //We are using online image here
@@ -51,7 +54,7 @@ export const FloatingIcon = () => {
           />
         </TouchableOpacity>
           {
-            token!=='' && convoID!==''  && modalVisible && <ChatScreen token={token}
+            modalVisible && <ChatScreen token={token}
               conversationId={convoID}
               setModalVisible={(event: boolean) => setModalVisible(event)}
               modalVisible={modalVisible}
@@ -86,8 +89,8 @@ function giftedMessageToBotMessage(message: any) {
 }
 
 
-class ChatScreen extends React.Component<any,any> {
- 
+class ChatScreen extends React.PureComponent<any,any> {
+  timer: any;
   //directLine:any
   constructor(props: any) {
     super(props);
@@ -106,8 +109,119 @@ class ChatScreen extends React.Component<any,any> {
       this.setState({ messages: [newMessage, ...this.state.messages] });
     }); */
   }
+
+  IDGen = () => {
+    // Math.random should be unique because of its seeding algorithm.
+    // Convert it to base 36 (numbers + letters), and grab the first 9 characters
+    // after the decimal.
+    return '_' + Math.random().toString(36).substr(2, 9);
+  };
+
   onSend = (messages: any) => {
-      this.setState({ messages: [...messages, ...this.state.messages] });
+    this.setState((previousState: any) => {
+      return {
+          messages: GiftedChat.append(previousState.messages, messages).sort((a: any, b: any) => moment(a.createdAt).diff(moment(b.createdAt)))
+      }
+    }, () => {
+      if (messages.find((message: any) => message.text && ['hi','hello','hey'].includes(message.text.toLowerCase()))) {
+        messages = [
+          
+          {
+            _id: `${this.IDGen()}_1`,
+            createdAt: moment(),
+            text: 'Hi! I’m Tara. I can help with account questions, work orders, store information, and more.',
+            user: {
+              _id: 2,
+              name: "Tara",
+              avatar:
+                require('../assets/images/Icons/Dog_Face.png')
+            }
+          },
+          {
+            _id: `${this.IDGen()}_2`,
+            createdAt: moment().add(5, 'milliseconds'),
+            text: 'If you’d like to speak to a human agent, let me know at any time.',
+            user: {
+              _id: 2,
+              name: "Tara",
+              avatar:
+                require('../assets/images/Icons/Dog_Face.png')
+            }
+          },
+          {
+            _id: `${this.IDGen()}_3`,
+            createdAt: moment().add(5, 'milliseconds'),
+            text: 'So, what can I help you with today?',
+            user: {
+              _id: 2,
+              name: "Tara",
+              avatar:
+                require('../assets/images/Icons/Dog_Face.png')
+            }
+          },
+        ]
+      }
+
+      if (messages.find((message: any) => message.text && ['talk to a person','agent'].includes(message.text.toLowerCase()))) {
+        messages = [
+          
+          {
+            _id: this.IDGen(),
+            createdAt: moment(),
+            text: `To connect with a person now, click on the following link: <a href="https://chat.cenhud.com/hppcwis.dll?varUserRequest=REQ_WEBCHAT_MAIN&varUserLanguage=english&varBusinessUnitName=DEFAULT">Agent</a>`,
+            user: {
+              _id: 2,
+              name: "Tara",
+              avatar:
+                require('../assets/images/Icons/Dog_Face.png')
+            }
+          }
+        ]
+      }
+      if (messages.find((message: any) => message.text && ['gas leak','leak'].includes(message.text.toLowerCase()))) {
+        messages = [
+          
+          {
+            _id: `${this.IDGen()}_1`,
+            createdAt: moment(),
+            text: `<span>Natural gas is colorless and odorless, so an odorant called mercaptan, which has a rotten egg smell, is added for easier detection in the event of a gas leak.<span>
+<span>If you suspect a natural gas leak,<strong> STOP. GO. LET US KNOW.</strong><span>
+<ul>
+<li><strong>STOP</strong> what you are doing. Do not light or use a match. Don’t turn lights on or off or use a flashlight, cell phone or telephone. Don’t turn on any other appliance or electric/electronic device and please do not flush or run water.</li>
+<li><strong>GO</strong> outside immediately and</li>
+<li><strong>LET US KNOW</strong> by calling the gas odor hotline at 800-942-8274. Or, call 9-1-1. A representative will come to your location and check for potential leaks or faulty appliances.</li></ul>
+<span><strong>This 800 number can only be used to report gas leaks.</strong></span>
+            `,
+            user: {
+              _id: 2,
+              name: "Tara",
+              avatar:
+                require('../assets/images/Icons/Dog_Face.png')
+            }
+          },
+          {
+            _id: `$this.IDGen()_2`,
+            createdAt: moment().add(5, 'milliseconds'),
+            text: `Thank You.`,
+            user: {
+              _id: 2,
+              name: "Tara",
+              avatar:
+                require('../assets/images/Icons/Dog_Face.png')
+            }
+          }
+        ]
+      }
+      this.timer = setTimeout(() => {
+        this.setState((previousState: any) => {
+          return {
+              messages: GiftedChat.append(previousState.messages, messages).sort((a: any, b: any) => moment(a.createdAt).diff(moment(b.createdAt)))
+          }
+        })
+      }, 1000);
+    });
+      
+    
     /*   messages.forEach((message: any) => {
         this.directLine
           .postActivity({
@@ -119,6 +233,23 @@ class ChatScreen extends React.Component<any,any> {
       }); */
     };
 
+  componentWillUnmount = () => {
+    if (this.timer) {
+      clearTimeout(this.timer)
+    }
+  }
+  renderMessage =(event: any) => {
+    return (
+      <View style={{padding: 10}}>
+        {event.currentMessage.user._id === 1 ? 
+        <Text style={{color: 'white'}}>{event.currentMessage.text}</Text>
+        :
+        <HTMLView
+          value={event.currentMessage.text}
+        />}
+      </View>
+    )
+  } 
   render() {
     return(
       <Modal
@@ -131,13 +262,15 @@ class ChatScreen extends React.Component<any,any> {
           >
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
-            <GiftedChat
-            user={{
-              _id: 1
-            }}
-            messages={this.state.messages}
-            onSend={this.onSend}
-          />
+              <GiftedChat
+                user={{
+                  _id: 1
+                }}
+                messages={this.state.messages}
+                onSend={this.onSend}
+                inverted={false}
+                renderMessageText={this.renderMessage}
+              />
             </View>
           </View>
         </Modal>
@@ -155,20 +288,20 @@ const styles = StyleSheet.create({
   },
 
   TouchableOpacityStyle: {
-    position: 'absolute',
-    width: 80,
-    height: 80,
+    // position: 'absolute',
+    width: 50,
+    height: 50,
     alignItems: 'center',
     justifyContent: 'center',
-    right: 20,
-    bottom: 5,
+    // right: 20,
+    // bottom: 5,
   },
 
   FloatingButtonStyle: {
     resizeMode: 'contain',
-    width: 80,
-    height: 80,
-    //backgroundColor:'black'
+    width: 50,
+    height: 50,
+    // opacity: 0.5
   },
 
   centeredView: {

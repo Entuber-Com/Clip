@@ -22,6 +22,7 @@ import MyAlerts from '../screens/MyAlerts';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useDispatch } from 'react-redux';
 import {Image} from 'react-native'
+import { FloatingIcon } from '../components/FloatingIcon';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -107,6 +108,7 @@ function HomeNavigator() {
         name="HomeScreen"
         component={Home}
         options={{ 
+          headerLeft: () => <FloatingIcon/>,
           headerTitle: () => (
             <View style={{
                 width: 200,
