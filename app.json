@@ -19,10 +19,15 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.Entuber.ChartClips"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
-    }
+    },
+    "android": {
+      "package": "com.Entuber.ChartClips"
+    },
+    "entryPoint": "node_modules/expo/AppEntry.js"
   }
 }
