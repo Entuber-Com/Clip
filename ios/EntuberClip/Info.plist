@@ -48,6 +48,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>So you can report your current meter readings</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>So we can help you login easier</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>So we can help you report service outages</string>
 	<key>UILaunchStoryboardName</key>
