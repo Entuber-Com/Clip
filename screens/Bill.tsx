@@ -11,12 +11,17 @@ import Colors from '../constants/Colors';
 import PaymentModal from './PaymentModal';
 import { useState } from 'react';
 import RNPickerSelect from 'react-native-picker-select';
+import { useIsFocused } from '@react-navigation/native';
 
 
 export default function Bill(props: any) {
     const [paymentModalVisible, setPaymentModalVisible] = useState<boolean>(false);
+    const isFocused = useIsFocused()
 
     const onItemPressed = (item: any) => {
+        if (!isFocused) {
+            return;
+        }
         if (item.title === 'Payment History') {
             props.navigation.navigate('PaymentHistory')
         }

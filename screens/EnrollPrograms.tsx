@@ -4,9 +4,14 @@ import { StyleSheet } from 'react-native';
 import { View } from '../components/Themed';
 import CustomisedFlatList from '../components/CustomisedFlatList';
 import {  enrollScreenData } from '../constants/ScreenData';
+import { useIsFocused } from '@react-navigation/native';
 
 export default function EnrollPrograms(props: any) {
+  const isFocused = useIsFocused()
   const onItemPressed = (item: any) => {
+    if (!isFocused) {
+      return;
+    }
     return;
   }
 

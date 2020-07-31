@@ -5,7 +5,7 @@ import * as React from 'react';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import { BottomTabParamList, HomeScreenParams, BillScreenParams, OutageScreenParams, MoreOptionScreenParams } from '../types';
-import { Icon, Thumbnail } from 'native-base';
+import { Icon, Thumbnail, Text } from 'native-base';
 import Outage from '../screens/Outage';
 import MoreOptions from '../screens/MoreOptions';
 import Bill from '../screens/Bill';
@@ -19,10 +19,19 @@ import BillAnalytics from '../screens/BillAnalytics';
 import EnrollPrograms from '../screens/EnrollPrograms';
 import SafetyInformation from '../screens/SafetyInformation';
 import MyAlerts from '../screens/MyAlerts';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useDispatch } from 'react-redux';
 import {Image} from 'react-native'
 import { FloatingIcon } from '../components/FloatingIcon';
+import {
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+} from 'react-native-popup-menu';
+import { Linking } from 'expo';
+import GasEmergency from '../screens/GasEmergency';
+import DiagnoseOutage from '../screens/DiagnoseOutage';
+import ReportOutage from '../screens/ReportOutage';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -124,11 +133,56 @@ function HomeNavigator() {
             </View>
           ),
           headerRight: () => (
-            <View style={{padding: Platform.OS==="ios"?8:10}}>
+            <Menu>
+            <MenuTrigger children={(<View style={{padding:10}}>
+                <Icon type='Entypo' name='menu'></Icon>
+              </View>)} />
+              <MenuOptions>
+                <MenuOption onSelect={() => Linking.canOpenURL('tel:860-278-7850')
+                    .then((supported: any) => {
+                      if (supported) {
+                        return Linking.openURL('tel:860-278-7850')
+                          .catch(() => null);
+                      }
+                    })} 
+                >
+                  <View style={{flexDirection: 'row',padding: 10}}>
+                    <Icon type='Entypo' name='phone'/>
+                    <Text style={{marginLeft: 5}}>Call Emergency</Text>
+                  </View>
+                </MenuOption>
+                <MenuOption>
+                  <View style={{flexDirection: 'row',padding: 10}}>
+                    <Icon type='Feather' name='settings'/>
+                    <Text style={{marginLeft: 5}}>Security Settings</Text>
+                  </View>
+                </MenuOption>
+                <MenuOption onSelect={() => Linking.canOpenURL('tel:203-562-4020')
+                    .then((supported: any) => {
+                      if (supported) {
+                        return Linking.openURL('tel:1-800-436-7734')
+                          .catch(() => null);
+                      }
+                    })} 
+                >
+                  <View style={{flexDirection: 'row',padding: 10}}>
+                    <Icon type='AntDesign' name='contacts'/>
+                    <Text style={{marginLeft: 5}}>Contact Information</Text>
+                  </View>
+                </MenuOption>
+                <MenuOption  onSelect={logout}>
+                  <View style={{flexDirection: 'row',padding: 10}}>
+                    <Icon type='MaterialCommunityIcons' name='logout'/>
+                    <Text style={{marginLeft: 5}}>Logout</Text>
+                  </View>
+                </MenuOption>
+              </MenuOptions>
+          </Menu>
+         /*    <View style={{padding: Platform.OS==="ios"?8:10}}>
               <TouchableOpacity onPress={logout}>
                 <Icon type='MaterialCommunityIcons' name='logout' style={{color: 'white'}}/>
               </TouchableOpacity>
-            </View>
+            </View> */
           ),
           headerTitleAlign: 'center',
           headerStyle:{
@@ -212,6 +266,42 @@ function OutageNavigator() {
         component={Outage}
         options={{ 
           headerTitle: 'Outage',
+          headerTitleAlign: 'center',
+          headerStyle:{
+              backgroundColor: Colors.PRIMARY
+          },
+          headerTintColor: '#fff'
+        }}
+      />
+      <OutageStack.Screen
+        name="GasEmergency"
+        component={GasEmergency}
+        options={{ 
+          headerTitle: 'Gas Emergency',
+          headerTitleAlign: 'center',
+          headerStyle:{
+              backgroundColor: Colors.PRIMARY
+          },
+          headerTintColor: '#fff'
+        }}
+      />
+      <OutageStack.Screen
+        name="ReportOutage"
+        component={ReportOutage}
+        options={{ 
+          headerTitle: 'Do you have power?',
+          headerTitleAlign: 'center',
+          headerStyle:{
+              backgroundColor: Colors.PRIMARY
+          },
+          headerTintColor: '#fff'
+        }}
+      />
+      <OutageStack.Screen
+        name="DiagnoseOutage"
+        component={DiagnoseOutage}
+        options={{ 
+          headerTitle: 'Diagnose Outage',
           headerTitleAlign: 'center',
           headerStyle:{
               backgroundColor: Colors.PRIMARY

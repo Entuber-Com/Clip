@@ -32,6 +32,9 @@ export type BillScreenParams = {
 export type OutageScreenParams = {
   OutageScreen: undefined;
   OutageMap: undefined;
+  GasEmergency: undefined;
+  ReportOutage: undefined;
+  DiagnoseOutage: undefined;
 };
 
 export type MoreOptionScreenParams = {

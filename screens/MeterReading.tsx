@@ -15,7 +15,7 @@ const MeterReading = (props: any) => {
             style={{flex: 1}}
         >
             <SafeAreaView style={{flex: 1}}>
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            {/* <TouchableWithoutFeedback onPress={Keyboard.dismiss}> */}
                 <View style={{ backgroundColor: '#f1f1f1', padding: 10,justifyContent: 'flex-end'}}>
                     <View >
                         <Text style={styles.meterTextHeader}>Submit your meter reading below by entering the 
@@ -67,7 +67,7 @@ const MeterReading = (props: any) => {
                         </TouchableOpacity>
                     </View>
                 </View>
-            </TouchableWithoutFeedback>
+            {/* </TouchableWithoutFeedback> */}
             </SafeAreaView>
         </KeyboardAvoidingView>
     )

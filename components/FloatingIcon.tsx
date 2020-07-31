@@ -265,7 +265,7 @@ class ChatScreen extends React.PureComponent<any,any> {
       <Modal
               animationType="slide"
               presentationStyle = 'fullScreen'
-              transparent={true}
+              // transparent={true}
               visible={this.props.modalVisible}
               onRequestClose={() => {
                   this.props.setModalVisible(false);

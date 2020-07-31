@@ -47,15 +47,14 @@ export const MoreOptionsScreenData = [
     },
     {
       id: "2",
-      title: "Contact Information",
-      icon: require('../assets/images/Icons/Contact_Information.png'),
-      description: 'Email, Phone Number & Mailing Address'
+      title: "Enroll In Programs",
+      icon: require('../assets/images/Icons/Enroll_In_Programs.png'),
+      description: 'Paperless, Equal Payment Plan & Auto Pay'
     },
     {
       id: "3",
-      title: "Security Settings",
-      icon: require('../assets/images/Icons/Security_Settings.png'),
-      description: 'Password, Security Questions & Biometrics'
+      title: "Manage Payment Methods",
+      icon: require('../assets/images/Icons/Manage_Payment_Methods.png'),
     },
     {
       id: "4",
@@ -64,15 +63,16 @@ export const MoreOptionsScreenData = [
     },
     {
       id: "5",
-      title: "Enroll In Programs",
-      icon: require('../assets/images/Icons/Enroll_In_Programs.png'),
-      description: 'Paperless, Equal Payment Plan & Auto Pay'
+      title: "Contact Information",
+      icon: require('../assets/images/Icons/Contact_Information.png'),
+      description: 'Email, Phone Number & Mailing Address'
     },
     {
       id: "6",
-      title: "Manage Payment Methods",
-      icon: require('../assets/images/Icons/Manage_Payment_Methods.png'),
-    },
+      title: "Security Settings",
+      icon: require('../assets/images/Icons/Security_Settings.png'),
+      description: 'Password, Security Questions & Biometrics'
+    },   
     {
       id: "7",
       title: "Contact Customer Service",
@@ -121,5 +121,23 @@ export const safetyInfoScreenData = [
     id: "3",
     title: "Carbon Monoxide Safety",
     icon: require('../assets/images/Icons/Carbon_Monoxide_Safety.png'),
+  },
+]
+
+export const reportOutageScreenData = [
+  {
+    id: "1",
+    title: "No Power",
+    icon: require('../assets/images/Icons/No_Power.png'),
+  },
+  {
+    id: "2",
+    title: "Partial Power",
+    icon: require('../assets/images/Icons/Partial_Power.png'),
+  },
+  {
+    id: "3",
+    title: "Full Power",
+    icon: require('../assets/images/Icons/Full_Power.png'),
   },
 ]

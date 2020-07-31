@@ -4,9 +4,14 @@ import { StyleSheet } from 'react-native';
 import { View } from '../components/Themed';
 import CustomisedFlatList from '../components/CustomisedFlatList';
 import { MoreOptionsScreenData } from '../constants/ScreenData';
+import { useIsFocused } from '@react-navigation/native';
 
 export default function MoreOptions(props: any) {
+  const isFocused = useIsFocused(); 
   const onItemPressed = (item: any) => {
+    if(!isFocused) {
+      return;
+    }
     if (item.title === 'Enroll In Programs') {
         props.navigation.navigate('EnrollPrograms')
     }
