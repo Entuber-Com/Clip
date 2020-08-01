@@ -5,15 +5,12 @@ import React, { Component, useMemo, useEffect, useState } from 'react';
 import { StyleSheet, View, Image, TouchableOpacity, Alert, Modal, Dimensions,Text } from 'react-native';
 //import all the components we are going to use.
 import { GiftedChat } from "react-native-gifted-chat";
+import{Button, ListItem, Icon} from 'native-base';
 import moment from 'moment';
 // import { DirectLine } from "botframework-directlinejs";
 // import ReactWebChat, { createDirectLine } from 'botframework-webchat';
 import HTMLView from 'react-native-htmlview';
-import { Platform } from 'react-native';
-import { Icon, ListItem } from 'native-base';
-import { TouchableHighlight } from 'react-native-gesture-handler';
-
-
+import Colors from '../constants/Colors';
 
 export const FloatingIcon = () => {
   //const directLine = useMemo(() => createDirectLine({ token: 'YOUR_DIRECT_LINE_TOKEN' }), []);
@@ -40,32 +37,33 @@ export const FloatingIcon = () => {
 
   
     return (
-      <>
-        
-        {/* <View style = {{flex:1, justifyContent: 'center', alignItems: 'center'}}> */}
-        <TouchableOpacity
-          //activeOpacity={0.5}
-          onPress={clickHandler}
-          //style={styles.TouchableOpacityStyle}
-          >
-          <Image
-            //We are making FAB using TouchableOpacity with an image
-            //We are using online image here
-             source={require('../assets/images/Icons/Dog_Face.png')}
-            //You can use you project image Example below
-            //source={require('./images/float-add-icon.png')}
-            style={styles.FloatingButtonStyle}
+      <View>
+
+      <TouchableOpacity>
+      <Button
+        activeOpacity={0.7}
+        onPress={clickHandler}
+        style={styles.TouchableOpacityStyle}
+        >
+
+              <Image
+                //We are making FAB using TouchableOpacity with an image
+                //We are using online image here
+                source={require('../assets/images/Icons/Dog_Face.png')}
+                //You can use you project image Example below
+                //source={require('./images/float-add-icon.png')}
+                style={styles.FloatingButtonStyle}
+              />
+      </Button>
+          </TouchableOpacity>
+        {
+          modalVisible && <ChatScreen token={token}
+            conversationId={convoID}
+            setModalVisible={(event: boolean) => setModalVisible(event)}
+            modalVisible={modalVisible}
           />
-        </TouchableOpacity>
-        {/* </View> */}
-          {
-            modalVisible && <ChatScreen token={token}
-              conversationId={convoID}
-              setModalVisible={(event: boolean) => setModalVisible(event)}
-              modalVisible={modalVisible}
-            />
-          }
-      </>
+        }
+    </View> 
      
     );
   
@@ -303,18 +301,20 @@ const styles = StyleSheet.create({
 
   TouchableOpacityStyle: {
     // position: 'absolute',
-    width: Platform.OS==="ios"?'100%':50,
-    height: Platform.OS ==="ios"?'100%':50,
+    width: 50,
+    height: 50,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: Colors.PRIMARY,
+    borderColor: Colors.PRIMARY
     // right: 20,
     // bottom: 5,
   },
 
   FloatingButtonStyle: {
     resizeMode: 'contain',
-    width: Platform.OS==="ios"?40:50,
-    height: Platform.OS ==="ios"?40:50,
+    width: 40,
+    height: 40
     // opacity: 0.5
   },
 

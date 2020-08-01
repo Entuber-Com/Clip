@@ -123,7 +123,9 @@ const Home = (props: any) => {
                                 color: '#fff',
                                 alignItems:'center', 
                                 justifyContent: 'center',
-                                textAlign: 'center'
+                                textAlign: 'center',
+                                marginBottom: 20,
+                                fontSize: 15
                             }
                         }}
                         items={[
@@ -136,9 +138,9 @@ const Home = (props: any) => {
                         ]}
                 />
                 <Text style={{fontSize: 16, fontWeight:'bold', color: '#fff', textAlign:"center"}}>{getGreetingTime(moment())}</Text>
-                <Card style={{backgroundColor: '#ed7738',padding:20, alignItems:'center', justifyContent: 'center'}}>
+                <Card style={{backgroundColor: '#ed7738',padding:20, alignItems:'center', justifyContent: 'center', marginTop:15}}>
                     <Text style={{fontSize: 30, color: '#fff'}}>{AppData['Customer']['Charges'] || '$0'}</Text>
-                    <Text style={{ color: '#fff'}}>{moment(new Date(AppData['Customer']['Date'])).format('ddd MMM D') || 'N/A'}</Text>
+                    <Text style={{ color: '#fff'}}>{moment(new Date(AppData['Customer']['Date'])).format('ddd MMM D, YYYY') || 'N/A'}</Text>
                     <Button bordered 
                         rounded
                         light

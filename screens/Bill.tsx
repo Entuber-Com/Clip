@@ -56,7 +56,9 @@ export default function Bill(props: any) {
                                 color: '#fff',
                                 alignItems:'center', 
                                 justifyContent: 'center',
-                                textAlign: 'center'
+                                textAlign: 'center',
+                                marginBottom: 20,
+                                fontSize: 17
                             }
                         }}
                         items={[
