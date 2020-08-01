@@ -27,7 +27,7 @@ const GasEmergency = (props: any) => {
                   
                     <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: 20}}>
                         <Button  style={{width: '75%', borderRadius: 5, backgroundColor: 'red',justifyContent: 'center',alignItems:'center', borderColor: '#0000FF', borderWidth: 2}}
-                            onPress={() => Linking.canOpenURL('tel:203-562-4020')
+                            onPress={() => Linking.canOpenURL('tel:1-800-436-7734')
                             .then((supported: any) => {
                               if (supported) {
                                 return Linking.openURL('tel:1-800-436-7734')
@@ -40,7 +40,7 @@ const GasEmergency = (props: any) => {
                     </View>
                     <View style={{flexDirection:'row', justifyContent: 'center', alignItems: 'center', padding: 20}}>
                         <Button  style={{width: '75%',  borderRadius: 5, backgroundColor: 'red',justifyContent: 'center',alignItems:'center', borderColor: '#0000FF', borderWidth: 2}}
-                            onPress={() => Linking.canOpenURL('tel:203-562-4020')
+                            onPress={() => Linking.canOpenURL('tel:911')
                             .then((supported: any) => {
                               if (supported) {
                                 return Linking.openURL('tel:911')

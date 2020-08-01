@@ -138,10 +138,10 @@ function HomeNavigator() {
                 <Icon type='Entypo' name='menu'></Icon>
               </View>)} />
               <MenuOptions>
-                <MenuOption onSelect={() => Linking.canOpenURL('tel:860-278-7850')
+                <MenuOption onSelect={() => Linking.canOpenURL('tel:1-800-436-7734')
                     .then((supported: any) => {
                       if (supported) {
-                        return Linking.openURL('tel:860-278-7850')
+                        return Linking.openURL('tel:1-800-436-7734')
                           .catch(() => null);
                       }
                     })} 
@@ -157,7 +157,7 @@ function HomeNavigator() {
                     <Text style={{marginLeft: 5}}>Security Settings</Text>
                   </View>
                 </MenuOption>
-                <MenuOption onSelect={() => Linking.canOpenURL('tel:203-562-4020')
+                <MenuOption onSelect={() => Linking.canOpenURL('tel:1-800-436-7734')
                     .then((supported: any) => {
                       if (supported) {
                         return Linking.openURL('tel:1-800-436-7734')

@@ -4,7 +4,7 @@ import RadioButton from '../components/RadioButton'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Colors from '../constants/Colors';
 import { Button } from 'native-base';
- 
+import * as firebase from 'firebase';
 
 const DiagnoseOutage = (props: any)  => {
     const [selected, setSelected] = useState('');
@@ -13,8 +13,16 @@ const DiagnoseOutage = (props: any)  => {
         if (selected === 'No') {
             Alert.alert('Alert','Please verify that you have reset the Fuses are Breakers before continuing.',[ { text: "OK", onPress: () => console.log("OK Pressed") }])
         } else if (selected === 'Yes') {
-            Alert.alert('Alert','Thanks for reporting back the outage.We will get back to you immediately.',[ { text: "OK", onPress: () => console.log("OK Pressed") }])
+            Alert.alert('Alert','Thanks for reporting back the outage.We will get back to you immediately.',[ { text: "OK", onPress: () => updateFirebase() }])
         }
+    }
+
+    const updateFirebase = () => {
+        firebase.database().ref('Customer/ClientID/5KPoVKeO14afWztF9maifPTaf3h1')
+        .update({
+          Outage: props.route && props.route.params && props.route.params.title && props.route.params.title.split(' ')[0]  
+        })
+        .catch(console.log)
     }
     return (
         <View style={{flex: 1}}>
