@@ -130,7 +130,7 @@ function HomeNavigator() {
                 marginBottom: 15,
                 backgroundColor: '#fff'}}
             >
-              <Image source={require('../assets/images/logo1.png')} style={{height: 50, padding: 0, resizeMode: Platform.OS==="ios"?'contain':'center'}}/>
+              <Image source={require('../assets/images/logo1.png')} style={{height: 50, padding: 0, width: 200/* resizeMode: Platform.OS==="ios"?'contain':'center' */}}/>
             </View>
           ),
           headerRight: () => (

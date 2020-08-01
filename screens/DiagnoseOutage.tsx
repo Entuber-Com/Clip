@@ -13,7 +13,7 @@ const DiagnoseOutage = (props: any)  => {
         if (selected === 'No') {
             Alert.alert('Alert','Please verify that you have reset the Fuses are Breakers before continuing.',[ { text: "OK", onPress: () => console.log("OK Pressed") }])
         } else if (selected === 'Yes') {
-            Alert.alert('Alert','Thanks for reporting back the outage.We will get back to you immediately.',[ { text: "OK", onPress: () => console.log("OK Pressed") }])
+            Alert.alert('Alert','Thanks for reporting back the outage. We will get back to you immediately.',[ { text: "OK", onPress: () => console.log("OK Pressed") }])
         }
     }
     return (

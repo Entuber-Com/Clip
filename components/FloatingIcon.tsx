@@ -43,7 +43,7 @@ export const FloatingIcon = () => {
       <Button
         activeOpacity={0.7}
         onPress={clickHandler}
-        style={styles.TouchableOpacityStyle}
+         style={styles.TouchableOpacityStyle}
         >
 
               <Image
@@ -302,7 +302,7 @@ const styles = StyleSheet.create({
   TouchableOpacityStyle: {
     // position: 'absolute',
     width: 50,
-    height: 50,
+    height: 30,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: Colors.PRIMARY,
