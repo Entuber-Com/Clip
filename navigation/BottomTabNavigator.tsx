@@ -139,10 +139,10 @@ function HomeNavigator() {
                 <Icon type='Entypo' name='menu'></Icon>
               </View>)} />
               <MenuOptions>
-                <MenuOption onSelect={() => Linking.canOpenURL('tel:1-800-436-7734')
+                <MenuOption onSelect={() => Linking.canOpenURL('tel:1-800-942-8274')
                     .then((supported: any) => {
                       if (supported) {
-                        return Linking.openURL('tel:1-800-436-7734')
+                        return Linking.openURL('tel:1-800-942-8274')
                           .catch(() => null);
                       }
                     })} 
