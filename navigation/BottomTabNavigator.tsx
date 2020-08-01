@@ -32,6 +32,7 @@ import { Linking } from 'expo';
 import GasEmergency from '../screens/GasEmergency';
 import DiagnoseOutage from '../screens/DiagnoseOutage';
 import ReportOutage from '../screens/ReportOutage';
+import Webview from '../screens/Webview';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -129,7 +130,7 @@ function HomeNavigator() {
                 marginBottom: 15,
                 backgroundColor: '#fff'}}
             >
-              <Image source={require('../assets/images/logo1.png')} style={{height: 50, padding: 0, resizeMode: Platform.OS==="ios"?'contain':'center'}}/>
+              <Image source={require('../assets/images/logo1.png')} style={{height: 50, padding: 0, width: 200/* resizeMode: Platform.OS==="ios"?'contain':'center' */}}/>
             </View>
           ),
           headerRight: () => (
@@ -251,6 +252,18 @@ function BillNavigator() {
           },
           headerTintColor: '#fff'
         }}
+        />
+        <BillStack.Screen
+          name="WebView"
+          component={Webview}
+          options={({ route }: any) => ({ 
+            headerTitle: route.params.title,
+            headerTitleAlign: 'center',
+            headerStyle:{
+                backgroundColor: Colors.PRIMARY
+            },
+            headerTintColor: '#fff'
+          })}
       />
     </BillStack.Navigator>
   );
@@ -289,7 +302,7 @@ function OutageNavigator() {
         name="ReportOutage"
         component={ReportOutage}
         options={{ 
-          headerTitle: 'Do you have power?',
+          headerTitle: 'Do You Have Power?',
           headerTitleAlign: 'center',
           headerStyle:{
               backgroundColor: Colors.PRIMARY
@@ -377,6 +390,18 @@ function MoreOptionsNavigator() {
           headerTintColor: '#fff'
         }}
       />
+       <MoreOptionsStack.Screen
+          name="WebView"
+          component={Webview}
+          options={({ route }: any) => ({ 
+            headerTitle: route.params.title,
+            headerTitleAlign: 'center',
+            headerStyle:{
+                backgroundColor: Colors.PRIMARY
+            },
+            headerTintColor: '#fff'
+          })}
+        />
     </MoreOptionsStack.Navigator>
   );
 }

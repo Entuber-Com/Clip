@@ -65,7 +65,8 @@ export default function Outage(props: any) {
                         alignItems:'center', 
                         justifyContent: 'center',
                         textAlign: 'center',
-                        padding: 10
+                        padding: 10,
+                        fontSize: 17
                     }
                 }}
                   items={[
