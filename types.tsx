@@ -15,6 +15,7 @@ export type BottomTabParamList = {
   BillScreenTab: undefined;
   OutageScreenTab: undefined;
   MoreOptionsScreenTab: undefined;
+  NotificationScreenTab:  undefined;
 };
 
 export type HomeScreenParams = {
@@ -43,3 +44,7 @@ export type MoreOptionScreenParams = {
   SafetyInfo: undefined;
   PushNotifications: undefined;
 };
+
+export type NavigationScreenParams = {
+  NotificationScreen: undefined;
+}

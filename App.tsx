@@ -1,15 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
-import { Provider } from 'react-redux';
+import { Provider, useSelector, useDispatch } from 'react-redux';
 import configureStore from './redux/store';
 import { MenuProvider } from 'react-native-popup-menu';
 import './hooks/Timer';
 import * as firebase from 'firebase';
+
 
 const firebaseConfig =  {
     apiKey: "AIzaSyD4NZ1oc83NF5HswWXsWcJf3yN1Fcsx-Bg",
@@ -40,7 +41,7 @@ export default function App() {
     return (
       <Provider store={configureStore()}>
         <SafeAreaProvider>
-          <MenuProvider>  
+          <MenuProvider> 
             <Navigation colorScheme={colorScheme} />
             <StatusBar />
           </MenuProvider>

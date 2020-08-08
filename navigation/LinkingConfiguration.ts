@@ -27,6 +27,11 @@ export default {
               MoreOptionsScreen: 'more',
             },
           },
+          NotificationScreenTab: {
+            screens: {
+              NotificationHome: 'notificationHome'
+            }
+          }
         },
       },
       ViewBill: {

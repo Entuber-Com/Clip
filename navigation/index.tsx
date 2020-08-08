@@ -1,7 +1,7 @@
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
-import { ColorSchemeName } from 'react-native';
+import { ColorSchemeName, Platform, StyleSheet, ImageBackground, Text, Image, Dimensions, View } from 'react-native';
 
 import NotFoundScreen from '../screens/NotFoundScreen';
 import { RootStackParamList, AuthStackParamList } from '../types';
@@ -14,16 +14,38 @@ import { fetchUserToken } from '../services/AuthService';
 import { Login } from '../screens/Authentication/Login';
 import { AppLoading } from 'expo';
 import FaceDetection from '../screens/Authentication/FaceDetection';
+import {Notification} from "react-native-in-app-message";
+import { useRef, useEffect } from 'react';
+import { Thumbnail, Left, Body } from 'native-base';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
-export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
+export default function Navigation({ colorScheme, navigation }: any) {
   
     /**
      * Variables declared.
      */
     const dispatch = useDispatch()
     const user = useSelector((store: StoreModel) => store.user)
+    const navigationRef = useRef<any>();
+    const showNotifications = useSelector((store: any) => store.notification.showNotification);
+    const notificationData = useSelector((store: any) => store.notification.notifications);
+    const notificationRef = useRef<any>();
+
+    useEffect(() => {
+      let timer: any;
+      if (showNotifications) {
+        timer = setTimeout(() => {
+          notificationRef.current.show();
+       //   notificationRef.current.hide();
+          dispatch({type: 'SHOW_NOTIFICATIONS', payload: false})
+        }, 1000)
+      }
+      return () => {
+        clearTimeout(timer);
+      }
+    }, [showNotifications]);
 
     /**
      * calls the authenticatedUser function to check the user state.
@@ -57,11 +79,39 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
+      ref={navigationRef}
       theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       {
         user.isSignOut ?
         <AuthNavigator/> :
-        <RootNavigator />
+        (
+          <>
+          <Notification text={'Hello world'}
+            blurType='light'
+            duration={5000}
+            ref={notificationRef}
+            onPress={() => {
+              navigationRef.current.navigate('NotificationScreenTab')
+              notificationRef.current.hide();
+            }}
+            customComponent={
+              <View style={Platform.OS === 'ios' ? styles.customView : styles.customViewAndroid}>
+                  <View style={{width: '25%'}}>
+                    <Thumbnail
+                      source={require('../assets/images/Icons/notification-banner.png')}
+                    />
+                  </View>
+                  <View style={{width: '75%'}}>
+                    <Text style={{fontSize: 16, color: Colors.PRIMARY}}>
+                      You've {notificationData.filter((data: any) => !data.Read).length || 0} new notifications(s).
+                    </Text>
+                  </View>
+              </View>
+            }  
+          /> 
+          <RootNavigator />
+          </>
+        )
       }
     </NavigationContainer>
   );
@@ -92,3 +142,56 @@ function AuthNavigator() {
     </AuthStack.Navigator>
   );
 }
+
+
+
+const styles = StyleSheet.create({
+	container: {
+		width: '100%',
+		height: '100%',
+		backgroundColor: '#123',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	buttonText: {
+		color: '#fff',
+		fontSize: 16,
+	},
+	button: {
+		marginBottom: 12,
+		paddingVertical: 10,
+		paddingHorizontal: 44,
+		borderWidth: 1,
+		borderRadius: 12,
+		borderColor: '#fff',
+	},
+	customView: {
+		width: Dimensions.get('window').width,
+		alignItems: 'center',
+    justifyContent: 'center',
+    padding: 25,
+   // borderBottomLeftRadius: 16,
+   // borderBottomRightRadius: 16,
+    // borderRadius: 16,
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: '#EDF2F4'
+	},
+	customViewAndroid: {
+		width: Dimensions.get('window').width,
+		alignItems: 'center',
+    justifyContent: 'center',
+    padding: 25,
+  //  borderBottomLeftRadius: 16,
+   // borderBottomRightRadius: 16,
+    // borderRadius: 16,
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: '#EDF2F4'
+	},
+	imageInner: {
+		borderRadius: 12,
+		width: 100,
+		height: 100,
+	},
+});

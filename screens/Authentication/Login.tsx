@@ -6,6 +6,8 @@ import * as authenticatedUsers from '../../constants/LoginForm.data';
 import {StyleSheet, TouchableOpacity, AsyncStorage} from 'react-native';
 import { authenticatedUserDetails } from '../../constants/AuthenticatedUsers';
 import {Asset} from 'expo-asset';
+import * as firebase from 'firebase';
+import moment from 'moment';
 
 
 export const Login = (props: any) => {
@@ -80,6 +82,15 @@ export const Login = (props: any) => {
                     userName: userDetail && userDetail.userName || ''
                 }
             }
+            const pushref = firebase.database()
+            .ref('Notification Fanout/ClientID/5KPoVKeO14afWztF9maifPTaf3h1')
+            .push();
+            pushref.set({
+              Headline: 'Demo Push Notification',
+              Read: false,
+              Subheadline: 'Subheadline test',
+              Timestamp: moment().unix()
+            })
             setLoading(false);      
             dispatch({type: 'SIGN_IN', payload: dispatchData})
         } else {

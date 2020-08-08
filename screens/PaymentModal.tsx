@@ -4,6 +4,7 @@ import { AppData } from "../constants/AppData";
 import moment from 'moment';
 import { Grid, Row, Col, ListItem } from "native-base";
 import RNPickerSelect from 'react-native-picker-select';
+import * as firebase from 'firebase';
 
 const PaymentModal = (props: any)  => {
     return (
@@ -62,6 +63,16 @@ const PaymentModal = (props: any)  => {
               style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
               onPress={() => {
                 Alert.alert("Payment Done!");
+                const pushref = firebase.database()
+                .ref('Notification Fanout/ClientID/5KPoVKeO14afWztF9maifPTaf3h1')
+                .push();
+                pushref.set({
+                  Headline: 'Bill Payment',
+                  Type: 'BILL_PAYMENT',
+                  Read: false,
+                  Subheadline: `You're payment of ${AppData.Customer.Charges||0} has been recieved on ${moment().format('ddd,MMM D YYYY')}`,
+                  Timestamp: moment().unix()
+                })
                 props.setModalVisible(false);
               }}
             >

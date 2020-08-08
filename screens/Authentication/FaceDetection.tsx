@@ -5,6 +5,9 @@ import * as FaceDetector from 'expo-face-detector';
 import { Camera } from 'expo-camera';
 import { authenticatedUserDetails } from '../../constants/AuthenticatedUsers';
 import { useDispatch } from 'react-redux';
+import * as firebase from 'firebase';
+import moment from 'moment';
+
 
 export default function FaceDetection(props: any) {
   const [hasPermission, setHasPermission] = useState(false);
@@ -35,6 +38,15 @@ export default function FaceDetection(props: any) {
                     userName: userDetail && userDetail.userName || ''
                 }
             }      
+            const pushref = firebase.database()
+            .ref('Notification Fanout/ClientID/5KPoVKeO14afWztF9maifPTaf3h1')
+            .push();
+            pushref.set({
+              Headline: 'Demo Push Notification',
+              Read: false,
+              Subheadline: 'Subheadline test',
+              Timestamp: moment().unix()
+            })
             dispatch({type: 'SIGN_IN', payload: dispatchData})
       }
   }

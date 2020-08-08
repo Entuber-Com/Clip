@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import { BottomTabParamList, HomeScreenParams, BillScreenParams, OutageScreenParams, MoreOptionScreenParams } from '../types';
+import { BottomTabParamList, HomeScreenParams, BillScreenParams, OutageScreenParams, MoreOptionScreenParams, NavigationScreenParams } from '../types';
 import { Icon, Thumbnail, Text } from 'native-base';
 import Outage from '../screens/Outage';
 import MoreOptions from '../screens/MoreOptions';
@@ -19,7 +19,7 @@ import BillAnalytics from '../screens/BillAnalytics';
 import EnrollPrograms from '../screens/EnrollPrograms';
 import SafetyInformation from '../screens/SafetyInformation';
 import MyAlerts from '../screens/MyAlerts';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {Image} from 'react-native'
 import { FloatingIcon } from '../components/FloatingIcon';
 import {
@@ -32,11 +32,100 @@ import { Linking } from 'expo';
 import GasEmergency from '../screens/GasEmergency';
 import DiagnoseOutage from '../screens/DiagnoseOutage';
 import ReportOutage from '../screens/ReportOutage';
+import { NotificationsHome } from '../screens/NotificationsTab/NotificationsHome';
+import * as firebase from 'firebase';
+import { useEffect, useState } from 'react';
+
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
 export default function BottomTabNavigator() {
   const colorScheme = useColorScheme();
+  const [notifications, setNotifications] = useState<any>([]);
+  const notificationData = useSelector((store: any) => store.notification.notifications)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    let timer: any;
+    const notificationRef = firebase
+    .database()
+    .ref('Notification Fanout/ClientID/5KPoVKeO14afWztF9maifPTaf3h1')
+    
+   /*  notificationRef
+    .once('value', (snapshot: any) => {
+      const not: any = [];
+      snapshot.forEach((childSnapshot: any) => {
+        not.push({
+          id: childSnapshot.key, 
+          ...childSnapshot.val()
+        });
+      });
+      setNotifications(not)
+      console.log('onvce', not)
+        dispatch({type: 'GET_NOTIFICATIONS', payload: not})
+    }) */
+
+    notificationRef.on('child_changed', (data: any) => {
+      notificationRef
+      .once('value', (snapshot: any) => {
+        const not: any = [];
+        snapshot.forEach((childSnapshot: any) => {
+          not.push({
+            id: childSnapshot.key, 
+            ...childSnapshot.val()
+          });
+        });
+        setNotifications(not)
+        dispatch({type: 'GET_NOTIFICATIONS', payload: not});
+        })
+    })
+
+    notificationRef.on('child_added', (data: any) => {
+      notificationRef
+      .once('value', (snapshot: any) => {
+        const not: any = [];
+        snapshot.forEach((childSnapshot: any) => {
+          not.push({
+            id: childSnapshot.key, 
+            ...childSnapshot.val()
+          });
+        });
+        setNotifications(not)
+        dispatch({type: 'GET_NOTIFICATIONS', payload: not})
+        if (not.filter((data: any) => data.Read === false).length > 0) {
+          if (data.Type && data.Type === 'BILL_PAY') {
+            timer = setTimeout(() => {
+              dispatch({type: 'SHOW_NOTIFICATIONS', payload: true})
+            }, 10000)
+          } else {
+            dispatch({type: 'SHOW_NOTIFICATIONS', payload: true})
+          }
+        } else {
+          dispatch({type: 'SHOW_NOTIFICATIONS', payload: false})
+        }
+      })
+    })
+
+    notificationRef.on('child_removed', (data: any) => {
+      notificationRef
+      .once('value', (snapshot: any) => {
+        const not: any = [];
+        snapshot.forEach((childSnapshot: any) => {
+          not.push({
+            id: childSnapshot.key, 
+            ...childSnapshot.val()
+          });
+        });
+        setNotifications(not)
+        dispatch({type: 'GET_NOTIFICATIONS', payload: not})
+      })
+    })
+
+    return () => {
+      notificationRef.off()
+      clearTimeout(timer);
+    }
+  }, [])
 
   return (
     <BottomTab.Navigator
@@ -75,6 +164,21 @@ export default function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
+        name="NotificationScreenTab"
+        component={NotificationNavigator}
+        options={{
+          tabBarLabel: 'Notifications',
+          unmountOnBlur:true,
+          tabBarBadge: notifications && notifications.filter((data: any) => !data.Read).length,
+          tabBarIcon: ({ color, focused }) => 
+          (
+            !notifications || notifications.filter((data: any) => !data.Read).length === 0 ?
+            <TabBarIcon type='MaterialIcons' focused={focused} name="notifications" color={color} />
+            : <TabBarIcon type='MaterialIcons' focused={focused} name="notifications-active" color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
         name="MoreOptionsScreenTab"
         component={MoreOptionsNavigator}
         options={{
@@ -104,11 +208,17 @@ const HomeStack = createStackNavigator<HomeScreenParams>();
 
 function HomeNavigator() {
   const dispatch =  useDispatch()
+  const notificationData = useSelector((store: any) => store.notification.notifications)
 
   const logout = () => {
     AsyncStorage.getAllKeys()
         .then((keys: any) => AsyncStorage.multiRemove(keys))
         .then(() =>  dispatch({type: 'SIGN_OUT'}));
+
+    notificationData.forEach((elem: any) => {
+      firebase.database()
+      .ref('Notification Fanout/ClientID/5KPoVKeO14afWztF9maifPTaf3h1/'+ elem.id).remove()
+    })
   } 
 
   return (
@@ -381,3 +491,23 @@ function MoreOptionsNavigator() {
   );
 }
 
+const NotificationStack = createStackNavigator<NavigationScreenParams>() 
+
+function NotificationNavigator() {
+  return (
+    <NotificationStack.Navigator>
+      <NotificationStack.Screen
+        name="NotificationScreen"
+        component={NotificationsHome}
+        options={{ 
+          headerTitle: 'Notifications',
+          headerTitleAlign: 'center',
+          headerStyle:{
+              backgroundColor: Colors.PRIMARY
+          },
+          headerTintColor: '#fff'
+        }}
+      />
+    </NotificationStack.Navigator>
+  );
+}
