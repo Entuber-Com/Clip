@@ -10,6 +10,8 @@ import configureStore from './redux/store';
 import { MenuProvider } from 'react-native-popup-menu';
 import './hooks/Timer';
 import * as firebase from 'firebase';
+import FlashMessage from "react-native-flash-message";
+import { Thumbnail } from 'native-base';
 
 
 const firebaseConfig =  {
@@ -44,6 +46,7 @@ export default function App() {
           <MenuProvider> 
             <Navigation colorScheme={colorScheme} />
             <StatusBar />
+            <FlashMessage position="top" floating={true} renderFlashMessageIcon={() => <Thumbnail source={require('./assets/images/Icons/notification-banner.png')} />}/>
           </MenuProvider>
         </SafeAreaProvider>
       </Provider>

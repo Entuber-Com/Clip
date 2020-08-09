@@ -14,8 +14,9 @@ import { fetchUserToken } from '../services/AuthService';
 import { Login } from '../screens/Authentication/Login';
 import { AppLoading } from 'expo';
 import FaceDetection from '../screens/Authentication/FaceDetection';
-import {Notification} from "react-native-in-app-message";
+import FlashMessage from "react-native-flash-message";
 import { useRef, useEffect } from 'react';
+import { showMessage, hideMessage } from "react-native-flash-message";
 import { Thumbnail, Left, Body } from 'native-base';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
@@ -37,7 +38,22 @@ export default function Navigation({ colorScheme, navigation }: any) {
       let timer: any;
       if (showNotifications) {
         timer = setTimeout(() => {
-          notificationRef.current.show();
+          console.log('here');
+          showMessage({
+            message: 'Notification',
+            description: `You've ${notificationData.filter((data: any) => !data.Read).length || 0} new notifications(s).`,
+            type: "default",
+            position: 'top',
+            floating: true,
+            backgroundColor: "#EDF2F4", // background color
+            color: 'black',
+            duration: 5000,
+            animated: true,
+            autoHide: true,
+            icon: require('../assets/images/Icons/notification-banner.png'),
+            onPress: () => navigationRef.current.navigate('NotificationScreenTab')
+          })
+        //  notificationRef.current.show();
        //   notificationRef.current.hide();
           dispatch({type: 'SHOW_NOTIFICATIONS', payload: false})
         }, 1000)
@@ -84,34 +100,7 @@ export default function Navigation({ colorScheme, navigation }: any) {
       {
         user.isSignOut ?
         <AuthNavigator/> :
-        (
-          <>
-          <Notification text={'Hello world'}
-            blurType='light'
-            duration={5000}
-            ref={notificationRef}
-            onPress={() => {
-              navigationRef.current.navigate('NotificationScreenTab')
-              notificationRef.current.hide();
-            }}
-            customComponent={
-              <View style={Platform.OS === 'ios' ? styles.customView : styles.customViewAndroid}>
-                  <View style={{width: '25%'}}>
-                    <Thumbnail
-                      source={require('../assets/images/Icons/notification-banner.png')}
-                    />
-                  </View>
-                  <View style={{width: '75%'}}>
-                    <Text style={{fontSize: 16, color: Colors.PRIMARY}}>
-                      You've {notificationData.filter((data: any) => !data.Read).length || 0} new notifications(s).
-                    </Text>
-                  </View>
-              </View>
-            }  
-          /> 
-          <RootNavigator />
-          </>
-        )
+        <RootNavigator />
       }
     </NavigationContainer>
   );
