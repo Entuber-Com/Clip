@@ -70,7 +70,7 @@ const PaymentModal = (props: any)  => {
                   Headline: 'Bill Payment',
                   Type: 'BILL_PAYMENT',
                   Read: false,
-                  Subheadline: `You're payment of ${AppData.Customer.Charges||0} has been recieved on ${moment().format('ddd,MMM D YYYY')}`,
+                  Subheadline: `Your payment of${AppData.Customer.Charges||0}has been recieved on ${moment().format('ddd, MMM D, YYYY')}`,
                   Timestamp: moment().unix()
                 })
                 props.setModalVisible(false);

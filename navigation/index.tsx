@@ -41,7 +41,7 @@ export default function Navigation({ colorScheme, navigation }: any) {
           console.log('here');
           showMessage({
             message: 'Notification',
-            description: `You've ${notificationData.filter((data: any) => !data.Read).length || 0} new notifications(s).`,
+            description: `You have ${notificationData.filter((data: any) => !data.Read).length || 0} new notification(s).`,
             type: "default",
             position: 'top',
             floating: true,
@@ -113,8 +113,16 @@ const Stack = createStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Root" component={BottomTabNavigator} />
-      <Stack.Screen name="ViewBill" component={ViewBill}/> 
+      <Stack.Screen name="Back" component={BottomTabNavigator} />
+      <Stack.Screen name="ViewBill" component={ViewBill}   options={{ 
+          headerShown: true,
+          headerTitle: 'View Bill',
+          headerTitleAlign: 'center',
+          headerStyle:{
+              backgroundColor: Colors.PRIMARY
+          },
+          headerTintColor: '#fff'
+        }}/> 
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
     </Stack.Navigator>
   );

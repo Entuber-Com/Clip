@@ -14,8 +14,8 @@ const GasEmergency = (props: any) => {
                     <View style={{ flexDirection: 'row', margin: 10}}>
                         <Text>1.
                         <Text style={styles.meterTextBold}>STOP</Text>
-                        <Text style={styles.meterText}> what you are doing. Do not light or use a match.Do not turn lights on or off or</Text>
-                        <Text style={styles.meterText}>use a flashlight, cellphone or telephone. Do not turn on any other appliance or electric/electronic device and do not flush or run water</Text>
+                        <Text style={styles.meterText}> what you are doing. Do not light or use a match. Do not turn lights on or off or</Text>
+                        <Text style={styles.meterText}>use a flashlight, cellphone or telephone. Do not turn on any other appliance or electric/electronic device and do not flush or run water.</Text>
                         </Text>
                     </View>
                     <View style={{flexDirection: 'row', margin: 10}}>
@@ -27,10 +27,10 @@ const GasEmergency = (props: any) => {
                   
                     <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: 20}}>
                         <Button  style={{width: '75%', borderRadius: 5, backgroundColor: 'red',justifyContent: 'center',alignItems:'center', borderColor: '#0000FF', borderWidth: 2}}
-                            onPress={() => Linking.canOpenURL('tel:1-800-436-7734')
+                            onPress={() => Linking.canOpenURL('tel:1-800-942-8274')
                             .then((supported: any) => {
                               if (supported) {
-                                return Linking.openURL('tel:1-800-436-7734')
+                                return Linking.openURL('tel:1-800-942-8274')
                                   .catch(() => null);
                               }
                             })}
