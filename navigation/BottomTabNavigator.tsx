@@ -36,6 +36,7 @@ import { NotificationsHome } from '../screens/NotificationsTab/NotificationsHome
 import * as firebase from 'firebase';
 import { useEffect, useState } from 'react';
 
+import Webview from '../screens/Webview';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -239,7 +240,7 @@ function HomeNavigator() {
                 marginBottom: 15,
                 backgroundColor: '#fff'}}
             >
-              <Image source={require('../assets/images/logo1.png')} style={{height: 50, padding: 0, resizeMode: Platform.OS==="ios"?'contain':'center'}}/>
+              <Image source={require('../assets/images/logo1.png')} style={{height: 50, padding: 0, width: 200/* resizeMode: Platform.OS==="ios"?'contain':'center' */}}/>
             </View>
           ),
           headerRight: () => (
@@ -267,10 +268,10 @@ function HomeNavigator() {
                     <Text style={{marginLeft: 5}}>Security Settings</Text>
                   </View>
                 </MenuOption>
-                <MenuOption onSelect={() => Linking.canOpenURL('tel:1-800-436-7734')
+                <MenuOption onSelect={() => Linking.canOpenURL('tel:1-800-942-8274')
                     .then((supported: any) => {
                       if (supported) {
-                        return Linking.openURL('tel:1-800-436-7734')
+                        return Linking.openURL('tel:1-800-942-8274')
                           .catch(() => null);
                       }
                     })} 
@@ -361,6 +362,18 @@ function BillNavigator() {
           },
           headerTintColor: '#fff'
         }}
+        />
+        <BillStack.Screen
+          name="WebView"
+          component={Webview}
+          options={({ route }: any) => ({ 
+            headerTitle: route.params.title,
+            headerTitleAlign: 'center',
+            headerStyle:{
+                backgroundColor: Colors.PRIMARY
+            },
+            headerTintColor: '#fff'
+          })}
       />
     </BillStack.Navigator>
   );
@@ -399,7 +412,7 @@ function OutageNavigator() {
         name="ReportOutage"
         component={ReportOutage}
         options={{ 
-          headerTitle: 'Do you have power?',
+          headerTitle: 'Do You Have Power?',
           headerTitleAlign: 'center',
           headerStyle:{
               backgroundColor: Colors.PRIMARY
@@ -487,6 +500,18 @@ function MoreOptionsNavigator() {
           headerTintColor: '#fff'
         }}
       />
+       <MoreOptionsStack.Screen
+          name="WebView"
+          component={Webview}
+          options={({ route }: any) => ({ 
+            headerTitle: route.params.title,
+            headerTitleAlign: 'center',
+            headerStyle:{
+                backgroundColor: Colors.PRIMARY
+            },
+            headerTintColor: '#fff'
+          })}
+        />
     </MoreOptionsStack.Navigator>
   );
 }
