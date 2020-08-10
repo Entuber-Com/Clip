@@ -11,7 +11,7 @@ import { Asset } from 'expo-asset'; */
 const ViewBill = () => {
     return (
         <View style={{flex: 1}}>
-            <WebView  source={{uri: 'https://firebasestorage.googleapis.com/v0/b/entuber.appspot.com/o/demoData%2FM%20Water%20Bill%20print.pdf?alt=media&token=fcf217f5-015a-4e2c-a4a0-59b99959d154'}}/>
+            <WebView  source={{uri: 'https://firebasestorage.googleapis.com/v0/b/entuber.appspot.com/o/demoData%2FBill%20July%20CHUD.pdf?alt=media&token=702b0ed0-961f-4e25-b6f7-c03737f88726'}}/>
          {/*     <PDFReader
                 style={styles.pdf}
                 source={{uri: Asset.fromModule(require('../assets/PDF/Bill_July_MDC.pdf')).uri}}
