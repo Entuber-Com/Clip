@@ -48,7 +48,8 @@ export default function ReportOutage(props: any) {
                         alignItems:'center', 
                         justifyContent: 'center',
                         textAlign: 'center',
-                        padding: 10
+                        padding: 20,
+                        fontSize: 15
                     }
                 }}
                   items={[
