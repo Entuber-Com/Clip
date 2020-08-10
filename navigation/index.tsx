@@ -119,7 +119,7 @@ function RootNavigator() {
           headerTitle: 'View Bill',
           headerTitleAlign: 'center',
           headerStyle:{
-              backgroundColor: Colors.PRIMARY
+              backgroundColor: '#3377bb'
           },
           headerTintColor: '#fff'
         }}/> 
