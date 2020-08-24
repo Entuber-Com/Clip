@@ -53,12 +53,12 @@ export const AppData = {
     "Bill History": [
             {
                 "Date": "8/24/20",
-                "Amount": " 824.00 ",
+                "Amount": " $824.00 ",
                 "Activity": "Posted",
                 "Details": {
                     "Created": "8/24/2020",
                     "ConfirmationID": "388725315004",
-                    "Payment_Method": "Credit Card",
+                    "Payment_Method": "Pay by App",
                     "Status": "Posted"
                 }
             },
@@ -80,7 +80,7 @@ export const AppData = {
                 "Details": {
                     "Created": "06/20/2020",
                     "ConfirmationID": "340601304003",
-                    "Payment_Method": "Pay by app",
+                    "Payment_Method": "Pay by App",
                     "Status": "Posted"
                 }
             },
