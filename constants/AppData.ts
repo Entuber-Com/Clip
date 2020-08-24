@@ -10,7 +10,7 @@ export const AppData = {
             "Device Type": "Hudson",
             "Details": "Smart",
             "Charges": " $1,866.43 ",
-            "Date": "7/29/20",
+            "Date": "8/29/20",
             "Usage": [
                 {
                     "id": "1",
@@ -51,6 +51,28 @@ export const AppData = {
             ]
         },
     "Bill History": [
+            {
+                "Date": "8/24/20",
+                "Amount": " 824.00 ",
+                "Activity": "Posted",
+                "Details": {
+                    "Created": "8/24/2020",
+                    "ConfirmationID": "388725315004",
+                    "Payment_Method": "Credit Card",
+                    "Status": "Posted"
+                }
+            },
+            {
+                "Date": "7/29/20",
+                "Amount": " $750.00 ",
+                "Activity": "Posted",
+                "Details": {
+                    "Created": "7/29/2020",
+                    "ConfirmationID": "340601304007",
+                    "Payment_Method": "Credit Card",
+                    "Status": "Posted"
+                }
+            },
             {
                 "Date": "6/20/20",
                 "Amount": " $700.00 ",

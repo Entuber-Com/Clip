@@ -52,7 +52,7 @@ export default function BillAnalytics(props: any) {
                 <VictoryBar
                     barRatio={0.8}
                     labels={["Average Daily kWh Usage"]}
-                    style={{ data: { fill: (data: any) => (data.datum.Month !== 'July' ? "#ccc" : "#3377bb") } }}
+                    style={{ data: { fill: (data: any) => (data.datum.Month !== 'August' ? "#ccc" : "#3377bb") } }}
                     data={AppData["Bill Usage"].Electric}
                     x='Month'
                     y='Usage'
@@ -72,7 +72,7 @@ export default function BillAnalytics(props: any) {
                     barRatio={0.8}
                     labels={["Average Daily thm Usage"]}
               
-                    style={{ data: { fill: (data: any) =>  (data.datum.Month !== "July" ? "#ccc" : "#3377bb") } }}
+                    style={{ data: { fill: (data: any) =>  (data.datum.Month !== "August" ? "#ccc" : "#3377bb") } }}
                     data={AppData["Bill Usage"].Gas}
                     x='Month'
                     y='Usage'

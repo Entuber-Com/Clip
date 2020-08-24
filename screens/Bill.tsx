@@ -72,8 +72,8 @@ export default function Bill(props: any) {
                 />
                 <Text style={{fontSize: 26,color: '#fff'}}>{AppData['Customer']['Charges'] || '$0'}</Text>
                 <Text style={{color: '#ffffff'}}></Text>
-                <Text note style={{color: '#ffffff'}}>You are {moment(new Date('08/10/2020')).diff(moment(),'days')} days into your billing period</Text>
-                <Text note style={{color: '#ffffff'}}>Next Meter Reading Date: 08/10/2020</Text>
+                <Text note style={{color: '#ffffff'}}>You are {moment(new Date('09/10/2020')).diff(moment(),'days')} days into your billing period</Text>
+                <Text note style={{color: '#ffffff'}}>Next Meter Reading Date: 09/10/2020</Text>
                 <Button bordered 
                     rounded
                     light
